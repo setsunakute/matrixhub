@@ -1,10 +1,9 @@
 import {
   AppShell,
-  Title,
+  Group,
   NavLink,
-  ScrollArea,
-  Stack,
   Text,
+  Title,
 } from '@mantine/core'
 import {
   createFileRoute,
@@ -16,7 +15,7 @@ import {
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const Route = createFileRoute('/(app)/_layout')({
+export const Route = createFileRoute('/_layout')({
   component: AppLayout,
 })
 
@@ -26,7 +25,8 @@ function AppNavbar() {
     select: state => state.matches.map(match => match.routeId),
   })
 
-  const layoutRoute = router.routesById['/(app)/_layout']
+  const layoutRoute = router.routesById['/_layout']
+
   const navRoutes = useMemo(() => {
     const children = layoutRoute?.children
 
@@ -48,23 +48,22 @@ function AppNavbar() {
   }
 
   return (
-    <ScrollArea h="100%">
-      <Stack gap={0}>
-        {navRoutes.map((route) => {
-          const isActive = activeRouteIds.includes(route.id)
+    <Group gap={0}>
+      {navRoutes.map((route) => {
+        const isActive = activeRouteIds.includes(route.id)
 
-          return (
-            <NavLink
-              key={route.id}
-              label={route.options.staticData?.navName ?? route.id}
-              component={Link}
-              to={route.to}
-              active={isActive}
-            />
-          )
-        })}
-      </Stack>
-    </ScrollArea>
+        return (
+          <NavLink
+            key={route.id}
+            label={route.options.staticData?.navName ?? route.id}
+            component={Link}
+            to={route.to}
+            active={isActive}
+            style={{ width: 'auto' }}
+          />
+        )
+      })}
+    </Group>
   )
 }
 
@@ -77,18 +76,13 @@ function AppLayout() {
       header={{
         height: 60,
       }}
-      navbar={{
-        width: 300,
-        breakpoint: '',
-      }}
     >
       <AppShell.Header p="md">
-        <Title order={2}>{t('translation.title')}</Title>
+        <Group justify="space-between">
+          <Title order={2}>{t('translation.title')}</Title>
+          <AppNavbar />
+        </Group>
       </AppShell.Header>
-
-      <AppShell.Navbar>
-        <AppNavbar />
-      </AppShell.Navbar>
 
       <AppShell.Main>
         <Outlet />
