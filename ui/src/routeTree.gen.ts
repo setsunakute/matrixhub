@@ -10,348 +10,336 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as appLayoutRouteImport } from './routes/(app)/_layout'
-import { Route as appLayoutIndexRouteImport } from './routes/(app)/_layout/index'
-import { Route as appLayoutAdminRouteImport } from './routes/(app)/_layout/admin'
-import { Route as appLayoutAboutRouteImport } from './routes/(app)/_layout/about'
-import { Route as appLayoutProjectsIndexRouteImport } from './routes/(app)/_layout/projects/index'
-import { Route as appLayoutProfileIndexRouteImport } from './routes/(app)/_layout/profile/index'
-import { Route as appLayoutModelsIndexRouteImport } from './routes/(app)/_layout/models/index'
-import { Route as appLayoutDatasetsIndexRouteImport } from './routes/(app)/_layout/datasets/index'
-import { Route as appLayoutAdminIndexRouteImport } from './routes/(app)/_layout/admin/index'
-import { Route as appLayoutModelsNewRouteImport } from './routes/(app)/_layout/models/new'
-import { Route as appLayoutDatasetsNewRouteImport } from './routes/(app)/_layout/datasets/new'
-import { Route as appLayoutAdminUsersRouteImport } from './routes/(app)/_layout/admin/users'
-import { Route as appLayoutAdminReplicationsRouteImport } from './routes/(app)/_layout/admin/replications'
-import { Route as appLayoutAdminRegistriesRouteImport } from './routes/(app)/_layout/admin/registries'
-import { Route as appLayoutProjectsProjectIdIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/index'
-import { Route as appLayoutProjectsProjectIdSettingsIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/settings/index'
-import { Route as appLayoutProjectsProjectIdModelsIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/models/index'
-import { Route as appLayoutProjectsProjectIdMembersIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/members/index'
-import { Route as appLayoutProjectsProjectIdDatasetsIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/index'
-import { Route as appLayoutAdminReplicationsReplicationIdExecutionsRouteImport } from './routes/(app)/_layout/admin/replications_.$replicationId.executions'
-import { Route as appLayoutProjectsProjectIdModelsModelIdIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/index'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/index'
-import { Route as appLayoutProjectsProjectIdModelsModelIdSettingsIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/settings/index'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/settings/index'
-import { Route as appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/commits/$ref/index'
-import { Route as appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/commit/$commitId/index'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/commits/$ref/index'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/commit/$commitId/index'
-import { Route as appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/tree/$ref/$'
-import { Route as appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRouteImport } from './routes/(app)/_layout/projects/$projectId/models/$modelId/blob/$ref/$'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/tree/$ref/$'
-import { Route as appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport } from './routes/(app)/_layout/projects/$projectId/datasets/$datasetId/blob/$ref/$'
+import { Route as LayoutRouteImport } from './routes/_layout'
+import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
+import { Route as LayoutAdminIndexRouteImport } from './routes/_layout/admin/index'
+import { Route as LayoutappIndexRouteImport } from './routes/_layout/(app)/index'
+import { Route as LayoutAdminUsersRouteImport } from './routes/_layout/admin/users'
+import { Route as LayoutAdminReplicationsRouteImport } from './routes/_layout/admin/replications'
+import { Route as LayoutAdminRegistriesRouteImport } from './routes/_layout/admin/registries'
+import { Route as LayoutappProjectsIndexRouteImport } from './routes/_layout/(app)/projects/index'
+import { Route as LayoutappProfileIndexRouteImport } from './routes/_layout/(app)/profile/index'
+import { Route as LayoutappModelsIndexRouteImport } from './routes/_layout/(app)/models/index'
+import { Route as LayoutappDatasetsIndexRouteImport } from './routes/_layout/(app)/datasets/index'
+import { Route as LayoutappModelsNewRouteImport } from './routes/_layout/(app)/models/new'
+import { Route as LayoutappDatasetsNewRouteImport } from './routes/_layout/(app)/datasets/new'
+import { Route as LayoutappProjectsProjectIdIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/index'
+import { Route as LayoutAdminReplicationsReplicationIdExecutionsRouteImport } from './routes/_layout/admin/replications_.$replicationId.executions'
+import { Route as LayoutappProjectsProjectIdSettingsIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/settings/index'
+import { Route as LayoutappProjectsProjectIdModelsIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/models/index'
+import { Route as LayoutappProjectsProjectIdMembersIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/members/index'
+import { Route as LayoutappProjectsProjectIdDatasetsIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/index'
+import { Route as LayoutappProjectsProjectIdModelsModelIdIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/index'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/index'
+import { Route as LayoutappProjectsProjectIdModelsModelIdSettingsIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/settings/index'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/settings/index'
+import { Route as LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/commits/$ref/index'
+import { Route as LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/commit/$commitId/index'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/index'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/index'
+import { Route as LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/tree/$ref/$'
+import { Route as LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRouteImport } from './routes/_layout/(app)/projects/$projectId/models/$modelId/blob/$ref/$'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$'
+import { Route as LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport } from './routes/_layout/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appLayoutRoute = appLayoutRouteImport.update({
-  id: '/(app)/_layout',
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appLayoutIndexRoute = appLayoutIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutAdminRoute = appLayoutAdminRouteImport.update({
+const LayoutAdminRoute = LayoutAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
-  getParentRoute: () => appLayoutRoute,
+  getParentRoute: () => LayoutRoute,
 } as any)
-const appLayoutAboutRoute = appLayoutAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutProjectsIndexRoute = appLayoutProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutProfileIndexRoute = appLayoutProfileIndexRouteImport.update({
-  id: '/profile/',
-  path: '/profile/',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutModelsIndexRoute = appLayoutModelsIndexRouteImport.update({
-  id: '/models/',
-  path: '/models/',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutDatasetsIndexRoute = appLayoutDatasetsIndexRouteImport.update({
-  id: '/datasets/',
-  path: '/datasets/',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutAdminIndexRoute = appLayoutAdminIndexRouteImport.update({
+const LayoutAdminIndexRoute = LayoutAdminIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => appLayoutAdminRoute,
+  getParentRoute: () => LayoutAdminRoute,
 } as any)
-const appLayoutModelsNewRoute = appLayoutModelsNewRouteImport.update({
-  id: '/models/new',
-  path: '/models/new',
-  getParentRoute: () => appLayoutRoute,
+const LayoutappIndexRoute = LayoutappIndexRouteImport.update({
+  id: '/(app)/',
+  path: '/',
+  getParentRoute: () => LayoutRoute,
 } as any)
-const appLayoutDatasetsNewRoute = appLayoutDatasetsNewRouteImport.update({
-  id: '/datasets/new',
-  path: '/datasets/new',
-  getParentRoute: () => appLayoutRoute,
-} as any)
-const appLayoutAdminUsersRoute = appLayoutAdminUsersRouteImport.update({
+const LayoutAdminUsersRoute = LayoutAdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
-  getParentRoute: () => appLayoutAdminRoute,
+  getParentRoute: () => LayoutAdminRoute,
 } as any)
-const appLayoutAdminReplicationsRoute =
-  appLayoutAdminReplicationsRouteImport.update({
-    id: '/replications',
-    path: '/replications',
-    getParentRoute: () => appLayoutAdminRoute,
-  } as any)
-const appLayoutAdminRegistriesRoute =
-  appLayoutAdminRegistriesRouteImport.update({
-    id: '/registries',
-    path: '/registries',
-    getParentRoute: () => appLayoutAdminRoute,
-  } as any)
-const appLayoutProjectsProjectIdIndexRoute =
-  appLayoutProjectsProjectIdIndexRouteImport.update({
-    id: '/projects/$projectId/',
+const LayoutAdminReplicationsRoute = LayoutAdminReplicationsRouteImport.update({
+  id: '/replications',
+  path: '/replications',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminRegistriesRoute = LayoutAdminRegistriesRouteImport.update({
+  id: '/registries',
+  path: '/registries',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutappProjectsIndexRoute = LayoutappProjectsIndexRouteImport.update({
+  id: '/(app)/projects/',
+  path: '/projects/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappProfileIndexRoute = LayoutappProfileIndexRouteImport.update({
+  id: '/(app)/profile/',
+  path: '/profile/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappModelsIndexRoute = LayoutappModelsIndexRouteImport.update({
+  id: '/(app)/models/',
+  path: '/models/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappDatasetsIndexRoute = LayoutappDatasetsIndexRouteImport.update({
+  id: '/(app)/datasets/',
+  path: '/datasets/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappModelsNewRoute = LayoutappModelsNewRouteImport.update({
+  id: '/(app)/models/new',
+  path: '/models/new',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappDatasetsNewRoute = LayoutappDatasetsNewRouteImport.update({
+  id: '/(app)/datasets/new',
+  path: '/datasets/new',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutappProjectsProjectIdIndexRoute =
+  LayoutappProjectsProjectIdIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/',
     path: '/projects/$projectId/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdSettingsIndexRoute =
-  appLayoutProjectsProjectIdSettingsIndexRouteImport.update({
-    id: '/projects/$projectId/settings/',
-    path: '/projects/$projectId/settings/',
-    getParentRoute: () => appLayoutRoute,
-  } as any)
-const appLayoutProjectsProjectIdModelsIndexRoute =
-  appLayoutProjectsProjectIdModelsIndexRouteImport.update({
-    id: '/projects/$projectId/models/',
-    path: '/projects/$projectId/models/',
-    getParentRoute: () => appLayoutRoute,
-  } as any)
-const appLayoutProjectsProjectIdMembersIndexRoute =
-  appLayoutProjectsProjectIdMembersIndexRouteImport.update({
-    id: '/projects/$projectId/members/',
-    path: '/projects/$projectId/members/',
-    getParentRoute: () => appLayoutRoute,
-  } as any)
-const appLayoutProjectsProjectIdDatasetsIndexRoute =
-  appLayoutProjectsProjectIdDatasetsIndexRouteImport.update({
-    id: '/projects/$projectId/datasets/',
-    path: '/projects/$projectId/datasets/',
-    getParentRoute: () => appLayoutRoute,
-  } as any)
-const appLayoutAdminReplicationsReplicationIdExecutionsRoute =
-  appLayoutAdminReplicationsReplicationIdExecutionsRouteImport.update({
+const LayoutAdminReplicationsReplicationIdExecutionsRoute =
+  LayoutAdminReplicationsReplicationIdExecutionsRouteImport.update({
     id: '/replications_/$replicationId/executions',
     path: '/replications/$replicationId/executions',
-    getParentRoute: () => appLayoutAdminRoute,
+    getParentRoute: () => LayoutAdminRoute,
   } as any)
-const appLayoutProjectsProjectIdModelsModelIdIndexRoute =
-  appLayoutProjectsProjectIdModelsModelIdIndexRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/',
+const LayoutappProjectsProjectIdSettingsIndexRoute =
+  LayoutappProjectsProjectIdSettingsIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/settings/',
+    path: '/projects/$projectId/settings/',
+    getParentRoute: () => LayoutRoute,
+  } as any)
+const LayoutappProjectsProjectIdModelsIndexRoute =
+  LayoutappProjectsProjectIdModelsIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/models/',
+    path: '/projects/$projectId/models/',
+    getParentRoute: () => LayoutRoute,
+  } as any)
+const LayoutappProjectsProjectIdMembersIndexRoute =
+  LayoutappProjectsProjectIdMembersIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/members/',
+    path: '/projects/$projectId/members/',
+    getParentRoute: () => LayoutRoute,
+  } as any)
+const LayoutappProjectsProjectIdDatasetsIndexRoute =
+  LayoutappProjectsProjectIdDatasetsIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/',
+    path: '/projects/$projectId/datasets/',
+    getParentRoute: () => LayoutRoute,
+  } as any)
+const LayoutappProjectsProjectIdModelsModelIdIndexRoute =
+  LayoutappProjectsProjectIdModelsModelIdIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/',
     path: '/projects/$projectId/models/$modelId/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdIndexRouteImport.update({
-    id: '/projects/$projectId/datasets/$datasetId/',
+const LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/$datasetId/',
     path: '/projects/$projectId/datasets/$datasetId/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute =
-  appLayoutProjectsProjectIdModelsModelIdSettingsIndexRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/settings/',
+const LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute =
+  LayoutappProjectsProjectIdModelsModelIdSettingsIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/settings/',
     path: '/projects/$projectId/models/$modelId/settings/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport.update({
-    id: '/projects/$projectId/datasets/$datasetId/settings/',
+const LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/$datasetId/settings/',
     path: '/projects/$projectId/datasets/$datasetId/settings/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute =
-  appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/commits/$ref/',
+const LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute =
+  LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/commits/$ref/',
     path: '/projects/$projectId/models/$modelId/commits/$ref/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute =
-  appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/commit/$commitId/',
+const LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute =
+  LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/commit/$commitId/',
     path: '/projects/$projectId/models/$modelId/commit/$commitId/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport.update({
-    id: '/projects/$projectId/datasets/$datasetId/commits/$ref/',
+const LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/',
     path: '/projects/$projectId/datasets/$datasetId/commits/$ref/',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport.update(
+const LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport.update(
     {
-      id: '/projects/$projectId/datasets/$datasetId/commit/$commitId/',
+      id: '/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/',
       path: '/projects/$projectId/datasets/$datasetId/commit/$commitId/',
-      getParentRoute: () => appLayoutRoute,
+      getParentRoute: () => LayoutRoute,
     } as any,
   )
-const appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute =
-  appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/tree/$ref/$',
+const LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute =
+  LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/tree/$ref/$',
     path: '/projects/$projectId/models/$modelId/tree/$ref/$',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute =
-  appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRouteImport.update({
-    id: '/projects/$projectId/models/$modelId/blob/$ref/$',
+const LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute =
+  LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRouteImport.update({
+    id: '/(app)/projects/$projectId/models/$modelId/blob/$ref/$',
     path: '/projects/$projectId/models/$modelId/blob/$ref/$',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport.update({
-    id: '/projects/$projectId/datasets/$datasetId/tree/$ref/$',
+const LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$',
     path: '/projects/$projectId/datasets/$datasetId/tree/$ref/$',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
-const appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute =
-  appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport.update({
-    id: '/projects/$projectId/datasets/$datasetId/blob/$ref/$',
+const LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute =
+  LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport.update({
+    id: '/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$',
     path: '/projects/$projectId/datasets/$datasetId/blob/$ref/$',
-    getParentRoute: () => appLayoutRoute,
+    getParentRoute: () => LayoutRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof LayoutappIndexRoute
   '/login': typeof LoginRoute
-  '/about': typeof appLayoutAboutRoute
-  '/admin': typeof appLayoutAdminRouteWithChildren
-  '/': typeof appLayoutIndexRoute
-  '/admin/registries': typeof appLayoutAdminRegistriesRoute
-  '/admin/replications': typeof appLayoutAdminReplicationsRoute
-  '/admin/users': typeof appLayoutAdminUsersRoute
-  '/datasets/new': typeof appLayoutDatasetsNewRoute
-  '/models/new': typeof appLayoutModelsNewRoute
-  '/admin/': typeof appLayoutAdminIndexRoute
-  '/datasets/': typeof appLayoutDatasetsIndexRoute
-  '/models/': typeof appLayoutModelsIndexRoute
-  '/profile/': typeof appLayoutProfileIndexRoute
-  '/projects/': typeof appLayoutProjectsIndexRoute
-  '/projects/$projectId/': typeof appLayoutProjectsProjectIdIndexRoute
-  '/admin/replications/$replicationId/executions': typeof appLayoutAdminReplicationsReplicationIdExecutionsRoute
-  '/projects/$projectId/datasets/': typeof appLayoutProjectsProjectIdDatasetsIndexRoute
-  '/projects/$projectId/members/': typeof appLayoutProjectsProjectIdMembersIndexRoute
-  '/projects/$projectId/models/': typeof appLayoutProjectsProjectIdModelsIndexRoute
-  '/projects/$projectId/settings/': typeof appLayoutProjectsProjectIdSettingsIndexRoute
-  '/projects/$projectId/datasets/$datasetId/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute
-  '/projects/$projectId/models/$modelId/': typeof appLayoutProjectsProjectIdModelsModelIdIndexRoute
-  '/projects/$projectId/datasets/$datasetId/settings/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
-  '/projects/$projectId/models/$modelId/settings/': typeof appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute
-  '/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
-  '/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
-  '/projects/$projectId/models/$modelId/blob/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute
-  '/projects/$projectId/models/$modelId/tree/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute
-  '/projects/$projectId/datasets/$datasetId/commit/$commitId/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
-  '/projects/$projectId/datasets/$datasetId/commits/$ref/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
-  '/projects/$projectId/models/$modelId/commit/$commitId/': typeof appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
-  '/projects/$projectId/models/$modelId/commits/$ref/': typeof appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute
+  '/admin': typeof LayoutAdminRouteWithChildren
+  '/admin/registries': typeof LayoutAdminRegistriesRoute
+  '/admin/replications': typeof LayoutAdminReplicationsRoute
+  '/admin/users': typeof LayoutAdminUsersRoute
+  '/admin/': typeof LayoutAdminIndexRoute
+  '/datasets/new': typeof LayoutappDatasetsNewRoute
+  '/models/new': typeof LayoutappModelsNewRoute
+  '/datasets/': typeof LayoutappDatasetsIndexRoute
+  '/models/': typeof LayoutappModelsIndexRoute
+  '/profile/': typeof LayoutappProfileIndexRoute
+  '/projects/': typeof LayoutappProjectsIndexRoute
+  '/admin/replications/$replicationId/executions': typeof LayoutAdminReplicationsReplicationIdExecutionsRoute
+  '/projects/$projectId/': typeof LayoutappProjectsProjectIdIndexRoute
+  '/projects/$projectId/datasets/': typeof LayoutappProjectsProjectIdDatasetsIndexRoute
+  '/projects/$projectId/members/': typeof LayoutappProjectsProjectIdMembersIndexRoute
+  '/projects/$projectId/models/': typeof LayoutappProjectsProjectIdModelsIndexRoute
+  '/projects/$projectId/settings/': typeof LayoutappProjectsProjectIdSettingsIndexRoute
+  '/projects/$projectId/datasets/$datasetId/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute
+  '/projects/$projectId/models/$modelId/': typeof LayoutappProjectsProjectIdModelsModelIdIndexRoute
+  '/projects/$projectId/datasets/$datasetId/settings/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
+  '/projects/$projectId/models/$modelId/settings/': typeof LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute
+  '/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
+  '/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
+  '/projects/$projectId/models/$modelId/blob/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute
+  '/projects/$projectId/models/$modelId/tree/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute
+  '/projects/$projectId/datasets/$datasetId/commit/$commitId/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
+  '/projects/$projectId/datasets/$datasetId/commits/$ref/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
+  '/projects/$projectId/models/$modelId/commit/$commitId/': typeof LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
+  '/projects/$projectId/models/$modelId/commits/$ref/': typeof LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/about': typeof appLayoutAboutRoute
-  '/': typeof appLayoutIndexRoute
-  '/admin/registries': typeof appLayoutAdminRegistriesRoute
-  '/admin/replications': typeof appLayoutAdminReplicationsRoute
-  '/admin/users': typeof appLayoutAdminUsersRoute
-  '/datasets/new': typeof appLayoutDatasetsNewRoute
-  '/models/new': typeof appLayoutModelsNewRoute
-  '/admin': typeof appLayoutAdminIndexRoute
-  '/datasets': typeof appLayoutDatasetsIndexRoute
-  '/models': typeof appLayoutModelsIndexRoute
-  '/profile': typeof appLayoutProfileIndexRoute
-  '/projects': typeof appLayoutProjectsIndexRoute
-  '/projects/$projectId': typeof appLayoutProjectsProjectIdIndexRoute
-  '/admin/replications/$replicationId/executions': typeof appLayoutAdminReplicationsReplicationIdExecutionsRoute
-  '/projects/$projectId/datasets': typeof appLayoutProjectsProjectIdDatasetsIndexRoute
-  '/projects/$projectId/members': typeof appLayoutProjectsProjectIdMembersIndexRoute
-  '/projects/$projectId/models': typeof appLayoutProjectsProjectIdModelsIndexRoute
-  '/projects/$projectId/settings': typeof appLayoutProjectsProjectIdSettingsIndexRoute
-  '/projects/$projectId/datasets/$datasetId': typeof appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute
-  '/projects/$projectId/models/$modelId': typeof appLayoutProjectsProjectIdModelsModelIdIndexRoute
-  '/projects/$projectId/datasets/$datasetId/settings': typeof appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
-  '/projects/$projectId/models/$modelId/settings': typeof appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute
-  '/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
-  '/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
-  '/projects/$projectId/models/$modelId/blob/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute
-  '/projects/$projectId/models/$modelId/tree/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute
-  '/projects/$projectId/datasets/$datasetId/commit/$commitId': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
-  '/projects/$projectId/datasets/$datasetId/commits/$ref': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
-  '/projects/$projectId/models/$modelId/commit/$commitId': typeof appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
-  '/projects/$projectId/models/$modelId/commits/$ref': typeof appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute
+  '/admin/registries': typeof LayoutAdminRegistriesRoute
+  '/admin/replications': typeof LayoutAdminReplicationsRoute
+  '/admin/users': typeof LayoutAdminUsersRoute
+  '/': typeof LayoutappIndexRoute
+  '/admin': typeof LayoutAdminIndexRoute
+  '/datasets/new': typeof LayoutappDatasetsNewRoute
+  '/models/new': typeof LayoutappModelsNewRoute
+  '/datasets': typeof LayoutappDatasetsIndexRoute
+  '/models': typeof LayoutappModelsIndexRoute
+  '/profile': typeof LayoutappProfileIndexRoute
+  '/projects': typeof LayoutappProjectsIndexRoute
+  '/admin/replications/$replicationId/executions': typeof LayoutAdminReplicationsReplicationIdExecutionsRoute
+  '/projects/$projectId': typeof LayoutappProjectsProjectIdIndexRoute
+  '/projects/$projectId/datasets': typeof LayoutappProjectsProjectIdDatasetsIndexRoute
+  '/projects/$projectId/members': typeof LayoutappProjectsProjectIdMembersIndexRoute
+  '/projects/$projectId/models': typeof LayoutappProjectsProjectIdModelsIndexRoute
+  '/projects/$projectId/settings': typeof LayoutappProjectsProjectIdSettingsIndexRoute
+  '/projects/$projectId/datasets/$datasetId': typeof LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute
+  '/projects/$projectId/models/$modelId': typeof LayoutappProjectsProjectIdModelsModelIdIndexRoute
+  '/projects/$projectId/datasets/$datasetId/settings': typeof LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
+  '/projects/$projectId/models/$modelId/settings': typeof LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute
+  '/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
+  '/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
+  '/projects/$projectId/models/$modelId/blob/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute
+  '/projects/$projectId/models/$modelId/tree/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute
+  '/projects/$projectId/datasets/$datasetId/commit/$commitId': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
+  '/projects/$projectId/datasets/$datasetId/commits/$ref': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
+  '/projects/$projectId/models/$modelId/commit/$commitId': typeof LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
+  '/projects/$projectId/models/$modelId/commits/$ref': typeof LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_layout': typeof LayoutRouteWithChildren
   '/login': typeof LoginRoute
-  '/(app)/_layout': typeof appLayoutRouteWithChildren
-  '/(app)/_layout/about': typeof appLayoutAboutRoute
-  '/(app)/_layout/admin': typeof appLayoutAdminRouteWithChildren
-  '/(app)/_layout/': typeof appLayoutIndexRoute
-  '/(app)/_layout/admin/registries': typeof appLayoutAdminRegistriesRoute
-  '/(app)/_layout/admin/replications': typeof appLayoutAdminReplicationsRoute
-  '/(app)/_layout/admin/users': typeof appLayoutAdminUsersRoute
-  '/(app)/_layout/datasets/new': typeof appLayoutDatasetsNewRoute
-  '/(app)/_layout/models/new': typeof appLayoutModelsNewRoute
-  '/(app)/_layout/admin/': typeof appLayoutAdminIndexRoute
-  '/(app)/_layout/datasets/': typeof appLayoutDatasetsIndexRoute
-  '/(app)/_layout/models/': typeof appLayoutModelsIndexRoute
-  '/(app)/_layout/profile/': typeof appLayoutProfileIndexRoute
-  '/(app)/_layout/projects/': typeof appLayoutProjectsIndexRoute
-  '/(app)/_layout/projects/$projectId/': typeof appLayoutProjectsProjectIdIndexRoute
-  '/(app)/_layout/admin/replications_/$replicationId/executions': typeof appLayoutAdminReplicationsReplicationIdExecutionsRoute
-  '/(app)/_layout/projects/$projectId/datasets/': typeof appLayoutProjectsProjectIdDatasetsIndexRoute
-  '/(app)/_layout/projects/$projectId/members/': typeof appLayoutProjectsProjectIdMembersIndexRoute
-  '/(app)/_layout/projects/$projectId/models/': typeof appLayoutProjectsProjectIdModelsIndexRoute
-  '/(app)/_layout/projects/$projectId/settings/': typeof appLayoutProjectsProjectIdSettingsIndexRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/': typeof appLayoutProjectsProjectIdModelsModelIdIndexRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/settings/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/settings/': typeof appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/blob/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/tree/$ref/$': typeof appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/commit/$commitId/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
-  '/(app)/_layout/projects/$projectId/datasets/$datasetId/commits/$ref/': typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/commit/$commitId/': typeof appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
-  '/(app)/_layout/projects/$projectId/models/$modelId/commits/$ref/': typeof appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute
+  '/_layout/admin': typeof LayoutAdminRouteWithChildren
+  '/_layout/admin/registries': typeof LayoutAdminRegistriesRoute
+  '/_layout/admin/replications': typeof LayoutAdminReplicationsRoute
+  '/_layout/admin/users': typeof LayoutAdminUsersRoute
+  '/_layout/(app)/': typeof LayoutappIndexRoute
+  '/_layout/admin/': typeof LayoutAdminIndexRoute
+  '/_layout/(app)/datasets/new': typeof LayoutappDatasetsNewRoute
+  '/_layout/(app)/models/new': typeof LayoutappModelsNewRoute
+  '/_layout/(app)/datasets/': typeof LayoutappDatasetsIndexRoute
+  '/_layout/(app)/models/': typeof LayoutappModelsIndexRoute
+  '/_layout/(app)/profile/': typeof LayoutappProfileIndexRoute
+  '/_layout/(app)/projects/': typeof LayoutappProjectsIndexRoute
+  '/_layout/admin/replications_/$replicationId/executions': typeof LayoutAdminReplicationsReplicationIdExecutionsRoute
+  '/_layout/(app)/projects/$projectId/': typeof LayoutappProjectsProjectIdIndexRoute
+  '/_layout/(app)/projects/$projectId/datasets/': typeof LayoutappProjectsProjectIdDatasetsIndexRoute
+  '/_layout/(app)/projects/$projectId/members/': typeof LayoutappProjectsProjectIdMembersIndexRoute
+  '/_layout/(app)/projects/$projectId/models/': typeof LayoutappProjectsProjectIdModelsIndexRoute
+  '/_layout/(app)/projects/$projectId/settings/': typeof LayoutappProjectsProjectIdSettingsIndexRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/': typeof LayoutappProjectsProjectIdModelsModelIdIndexRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/settings/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/settings/': typeof LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$': typeof LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/blob/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/tree/$ref/$': typeof LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
+  '/_layout/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/': typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/commit/$commitId/': typeof LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
+  '/_layout/(app)/projects/$projectId/models/$modelId/commits/$ref/': typeof LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/login'
-    | '/about'
-    | '/admin'
     | '/'
+    | '/login'
+    | '/admin'
     | '/admin/registries'
     | '/admin/replications'
     | '/admin/users'
+    | '/admin/'
     | '/datasets/new'
     | '/models/new'
-    | '/admin/'
     | '/datasets/'
     | '/models/'
     | '/profile/'
     | '/projects/'
-    | '/projects/$projectId/'
     | '/admin/replications/$replicationId/executions'
+    | '/projects/$projectId/'
     | '/projects/$projectId/datasets/'
     | '/projects/$projectId/members/'
     | '/projects/$projectId/models/'
@@ -371,20 +359,19 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
-    | '/about'
-    | '/'
     | '/admin/registries'
     | '/admin/replications'
     | '/admin/users'
+    | '/'
+    | '/admin'
     | '/datasets/new'
     | '/models/new'
-    | '/admin'
     | '/datasets'
     | '/models'
     | '/profile'
     | '/projects'
-    | '/projects/$projectId'
     | '/admin/replications/$replicationId/executions'
+    | '/projects/$projectId'
     | '/projects/$projectId/datasets'
     | '/projects/$projectId/members'
     | '/projects/$projectId/models'
@@ -403,44 +390,43 @@ export interface FileRouteTypes {
     | '/projects/$projectId/models/$modelId/commits/$ref'
   id:
     | '__root__'
+    | '/_layout'
     | '/login'
-    | '/(app)/_layout'
-    | '/(app)/_layout/about'
-    | '/(app)/_layout/admin'
-    | '/(app)/_layout/'
-    | '/(app)/_layout/admin/registries'
-    | '/(app)/_layout/admin/replications'
-    | '/(app)/_layout/admin/users'
-    | '/(app)/_layout/datasets/new'
-    | '/(app)/_layout/models/new'
-    | '/(app)/_layout/admin/'
-    | '/(app)/_layout/datasets/'
-    | '/(app)/_layout/models/'
-    | '/(app)/_layout/profile/'
-    | '/(app)/_layout/projects/'
-    | '/(app)/_layout/projects/$projectId/'
-    | '/(app)/_layout/admin/replications_/$replicationId/executions'
-    | '/(app)/_layout/projects/$projectId/datasets/'
-    | '/(app)/_layout/projects/$projectId/members/'
-    | '/(app)/_layout/projects/$projectId/models/'
-    | '/(app)/_layout/projects/$projectId/settings/'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/settings/'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/settings/'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/blob/$ref/$'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/tree/$ref/$'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/blob/$ref/$'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/tree/$ref/$'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/commit/$commitId/'
-    | '/(app)/_layout/projects/$projectId/datasets/$datasetId/commits/$ref/'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/commit/$commitId/'
-    | '/(app)/_layout/projects/$projectId/models/$modelId/commits/$ref/'
+    | '/_layout/admin'
+    | '/_layout/admin/registries'
+    | '/_layout/admin/replications'
+    | '/_layout/admin/users'
+    | '/_layout/(app)/'
+    | '/_layout/admin/'
+    | '/_layout/(app)/datasets/new'
+    | '/_layout/(app)/models/new'
+    | '/_layout/(app)/datasets/'
+    | '/_layout/(app)/models/'
+    | '/_layout/(app)/profile/'
+    | '/_layout/(app)/projects/'
+    | '/_layout/admin/replications_/$replicationId/executions'
+    | '/_layout/(app)/projects/$projectId/'
+    | '/_layout/(app)/projects/$projectId/datasets/'
+    | '/_layout/(app)/projects/$projectId/members/'
+    | '/_layout/(app)/projects/$projectId/models/'
+    | '/_layout/(app)/projects/$projectId/settings/'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/settings/'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/settings/'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/blob/$ref/$'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/tree/$ref/$'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/'
+    | '/_layout/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/commit/$commitId/'
+    | '/_layout/(app)/projects/$projectId/models/$modelId/commits/$ref/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  LayoutRoute: typeof LayoutRouteWithChildren
   LoginRoute: typeof LoginRoute
-  appLayoutRoute: typeof appLayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -452,335 +438,325 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(app)/_layout': {
-      id: '/(app)/_layout'
+    '/_layout': {
+      id: '/_layout'
       path: ''
-      fullPath: ''
-      preLoaderRoute: typeof appLayoutRouteImport
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(app)/_layout/': {
-      id: '/(app)/_layout/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof appLayoutIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/admin': {
-      id: '/(app)/_layout/admin'
+    '/_layout/admin': {
+      id: '/_layout/admin'
       path: '/admin'
       fullPath: '/admin'
-      preLoaderRoute: typeof appLayoutAdminRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutAdminRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/about': {
-      id: '/(app)/_layout/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof appLayoutAboutRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/projects/': {
-      id: '/(app)/_layout/projects/'
-      path: '/projects'
-      fullPath: '/projects/'
-      preLoaderRoute: typeof appLayoutProjectsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/profile/': {
-      id: '/(app)/_layout/profile/'
-      path: '/profile'
-      fullPath: '/profile/'
-      preLoaderRoute: typeof appLayoutProfileIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/models/': {
-      id: '/(app)/_layout/models/'
-      path: '/models'
-      fullPath: '/models/'
-      preLoaderRoute: typeof appLayoutModelsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/datasets/': {
-      id: '/(app)/_layout/datasets/'
-      path: '/datasets'
-      fullPath: '/datasets/'
-      preLoaderRoute: typeof appLayoutDatasetsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/admin/': {
-      id: '/(app)/_layout/admin/'
+    '/_layout/admin/': {
+      id: '/_layout/admin/'
       path: '/'
       fullPath: '/admin/'
-      preLoaderRoute: typeof appLayoutAdminIndexRouteImport
-      parentRoute: typeof appLayoutAdminRoute
+      preLoaderRoute: typeof LayoutAdminIndexRouteImport
+      parentRoute: typeof LayoutAdminRoute
     }
-    '/(app)/_layout/models/new': {
-      id: '/(app)/_layout/models/new'
-      path: '/models/new'
-      fullPath: '/models/new'
-      preLoaderRoute: typeof appLayoutModelsNewRouteImport
-      parentRoute: typeof appLayoutRoute
+    '/_layout/(app)/': {
+      id: '/_layout/(app)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutappIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/datasets/new': {
-      id: '/(app)/_layout/datasets/new'
-      path: '/datasets/new'
-      fullPath: '/datasets/new'
-      preLoaderRoute: typeof appLayoutDatasetsNewRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/admin/users': {
-      id: '/(app)/_layout/admin/users'
+    '/_layout/admin/users': {
+      id: '/_layout/admin/users'
       path: '/users'
       fullPath: '/admin/users'
-      preLoaderRoute: typeof appLayoutAdminUsersRouteImport
-      parentRoute: typeof appLayoutAdminRoute
+      preLoaderRoute: typeof LayoutAdminUsersRouteImport
+      parentRoute: typeof LayoutAdminRoute
     }
-    '/(app)/_layout/admin/replications': {
-      id: '/(app)/_layout/admin/replications'
+    '/_layout/admin/replications': {
+      id: '/_layout/admin/replications'
       path: '/replications'
       fullPath: '/admin/replications'
-      preLoaderRoute: typeof appLayoutAdminReplicationsRouteImport
-      parentRoute: typeof appLayoutAdminRoute
+      preLoaderRoute: typeof LayoutAdminReplicationsRouteImport
+      parentRoute: typeof LayoutAdminRoute
     }
-    '/(app)/_layout/admin/registries': {
-      id: '/(app)/_layout/admin/registries'
+    '/_layout/admin/registries': {
+      id: '/_layout/admin/registries'
       path: '/registries'
       fullPath: '/admin/registries'
-      preLoaderRoute: typeof appLayoutAdminRegistriesRouteImport
-      parentRoute: typeof appLayoutAdminRoute
+      preLoaderRoute: typeof LayoutAdminRegistriesRouteImport
+      parentRoute: typeof LayoutAdminRoute
     }
-    '/(app)/_layout/projects/$projectId/': {
-      id: '/(app)/_layout/projects/$projectId/'
+    '/_layout/(app)/projects/': {
+      id: '/_layout/(app)/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof LayoutappProjectsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/profile/': {
+      id: '/_layout/(app)/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof LayoutappProfileIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/models/': {
+      id: '/_layout/(app)/models/'
+      path: '/models'
+      fullPath: '/models/'
+      preLoaderRoute: typeof LayoutappModelsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/datasets/': {
+      id: '/_layout/(app)/datasets/'
+      path: '/datasets'
+      fullPath: '/datasets/'
+      preLoaderRoute: typeof LayoutappDatasetsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/models/new': {
+      id: '/_layout/(app)/models/new'
+      path: '/models/new'
+      fullPath: '/models/new'
+      preLoaderRoute: typeof LayoutappModelsNewRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/datasets/new': {
+      id: '/_layout/(app)/datasets/new'
+      path: '/datasets/new'
+      fullPath: '/datasets/new'
+      preLoaderRoute: typeof LayoutappDatasetsNewRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/projects/$projectId/': {
+      id: '/_layout/(app)/projects/$projectId/'
       path: '/projects/$projectId'
       fullPath: '/projects/$projectId/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/settings/': {
-      id: '/(app)/_layout/projects/$projectId/settings/'
-      path: '/projects/$projectId/settings'
-      fullPath: '/projects/$projectId/settings/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdSettingsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/projects/$projectId/models/': {
-      id: '/(app)/_layout/projects/$projectId/models/'
-      path: '/projects/$projectId/models'
-      fullPath: '/projects/$projectId/models/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/projects/$projectId/members/': {
-      id: '/(app)/_layout/projects/$projectId/members/'
-      path: '/projects/$projectId/members'
-      fullPath: '/projects/$projectId/members/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdMembersIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/projects/$projectId/datasets/': {
-      id: '/(app)/_layout/projects/$projectId/datasets/'
-      path: '/projects/$projectId/datasets'
-      fullPath: '/projects/$projectId/datasets/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
-    }
-    '/(app)/_layout/admin/replications_/$replicationId/executions': {
-      id: '/(app)/_layout/admin/replications_/$replicationId/executions'
+    '/_layout/admin/replications_/$replicationId/executions': {
+      id: '/_layout/admin/replications_/$replicationId/executions'
       path: '/replications/$replicationId/executions'
       fullPath: '/admin/replications/$replicationId/executions'
-      preLoaderRoute: typeof appLayoutAdminReplicationsReplicationIdExecutionsRouteImport
-      parentRoute: typeof appLayoutAdminRoute
+      preLoaderRoute: typeof LayoutAdminReplicationsReplicationIdExecutionsRouteImport
+      parentRoute: typeof LayoutAdminRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/'
+    '/_layout/(app)/projects/$projectId/settings/': {
+      id: '/_layout/(app)/projects/$projectId/settings/'
+      path: '/projects/$projectId/settings'
+      fullPath: '/projects/$projectId/settings/'
+      preLoaderRoute: typeof LayoutappProjectsProjectIdSettingsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/projects/$projectId/models/': {
+      id: '/_layout/(app)/projects/$projectId/models/'
+      path: '/projects/$projectId/models'
+      fullPath: '/projects/$projectId/models/'
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/projects/$projectId/members/': {
+      id: '/_layout/(app)/projects/$projectId/members/'
+      path: '/projects/$projectId/members'
+      fullPath: '/projects/$projectId/members/'
+      preLoaderRoute: typeof LayoutappProjectsProjectIdMembersIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/projects/$projectId/datasets/': {
+      id: '/_layout/(app)/projects/$projectId/datasets/'
+      path: '/projects/$projectId/datasets'
+      fullPath: '/projects/$projectId/datasets/'
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/(app)/projects/$projectId/models/$modelId/': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/'
       path: '/projects/$projectId/models/$modelId'
       fullPath: '/projects/$projectId/models/$modelId/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/'
       path: '/projects/$projectId/datasets/$datasetId'
       fullPath: '/projects/$projectId/datasets/$datasetId/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/settings/': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/settings/'
+    '/_layout/(app)/projects/$projectId/models/$modelId/settings/': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/settings/'
       path: '/projects/$projectId/models/$modelId/settings'
       fullPath: '/projects/$projectId/models/$modelId/settings/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdSettingsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdSettingsIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/settings/': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/settings/'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/settings/': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/settings/'
       path: '/projects/$projectId/datasets/$datasetId/settings'
       fullPath: '/projects/$projectId/datasets/$datasetId/settings/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/commits/$ref/': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/commits/$ref/'
+    '/_layout/(app)/projects/$projectId/models/$modelId/commits/$ref/': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/commits/$ref/'
       path: '/projects/$projectId/models/$modelId/commits/$ref'
       fullPath: '/projects/$projectId/models/$modelId/commits/$ref/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/commit/$commitId/': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/commit/$commitId/'
+    '/_layout/(app)/projects/$projectId/models/$modelId/commit/$commitId/': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/commit/$commitId/'
       path: '/projects/$projectId/models/$modelId/commit/$commitId'
       fullPath: '/projects/$projectId/models/$modelId/commit/$commitId/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/commits/$ref/': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/commits/$ref/'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/commits/$ref/'
       path: '/projects/$projectId/datasets/$datasetId/commits/$ref'
       fullPath: '/projects/$projectId/datasets/$datasetId/commits/$ref/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/commit/$commitId/': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/commit/$commitId/'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/commit/$commitId/'
       path: '/projects/$projectId/datasets/$datasetId/commit/$commitId'
       fullPath: '/projects/$projectId/datasets/$datasetId/commit/$commitId/'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/tree/$ref/$': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/tree/$ref/$'
+    '/_layout/(app)/projects/$projectId/models/$modelId/tree/$ref/$': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/tree/$ref/$'
       path: '/projects/$projectId/models/$modelId/tree/$ref/$'
       fullPath: '/projects/$projectId/models/$modelId/tree/$ref/$'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/models/$modelId/blob/$ref/$': {
-      id: '/(app)/_layout/projects/$projectId/models/$modelId/blob/$ref/$'
+    '/_layout/(app)/projects/$projectId/models/$modelId/blob/$ref/$': {
+      id: '/_layout/(app)/projects/$projectId/models/$modelId/blob/$ref/$'
       path: '/projects/$projectId/models/$modelId/blob/$ref/$'
       fullPath: '/projects/$projectId/models/$modelId/blob/$ref/$'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/tree/$ref/$': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/tree/$ref/$'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/tree/$ref/$'
       path: '/projects/$projectId/datasets/$datasetId/tree/$ref/$'
       fullPath: '/projects/$projectId/datasets/$datasetId/tree/$ref/$'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRouteImport
+      parentRoute: typeof LayoutRoute
     }
-    '/(app)/_layout/projects/$projectId/datasets/$datasetId/blob/$ref/$': {
-      id: '/(app)/_layout/projects/$projectId/datasets/$datasetId/blob/$ref/$'
+    '/_layout/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$': {
+      id: '/_layout/(app)/projects/$projectId/datasets/$datasetId/blob/$ref/$'
       path: '/projects/$projectId/datasets/$datasetId/blob/$ref/$'
       fullPath: '/projects/$projectId/datasets/$datasetId/blob/$ref/$'
-      preLoaderRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport
-      parentRoute: typeof appLayoutRoute
+      preLoaderRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRouteImport
+      parentRoute: typeof LayoutRoute
     }
   }
 }
 
-interface appLayoutAdminRouteChildren {
-  appLayoutAdminRegistriesRoute: typeof appLayoutAdminRegistriesRoute
-  appLayoutAdminReplicationsRoute: typeof appLayoutAdminReplicationsRoute
-  appLayoutAdminUsersRoute: typeof appLayoutAdminUsersRoute
-  appLayoutAdminIndexRoute: typeof appLayoutAdminIndexRoute
-  appLayoutAdminReplicationsReplicationIdExecutionsRoute: typeof appLayoutAdminReplicationsReplicationIdExecutionsRoute
+interface LayoutAdminRouteChildren {
+  LayoutAdminRegistriesRoute: typeof LayoutAdminRegistriesRoute
+  LayoutAdminReplicationsRoute: typeof LayoutAdminReplicationsRoute
+  LayoutAdminUsersRoute: typeof LayoutAdminUsersRoute
+  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
+  LayoutAdminReplicationsReplicationIdExecutionsRoute: typeof LayoutAdminReplicationsReplicationIdExecutionsRoute
 }
 
-const appLayoutAdminRouteChildren: appLayoutAdminRouteChildren = {
-  appLayoutAdminRegistriesRoute: appLayoutAdminRegistriesRoute,
-  appLayoutAdminReplicationsRoute: appLayoutAdminReplicationsRoute,
-  appLayoutAdminUsersRoute: appLayoutAdminUsersRoute,
-  appLayoutAdminIndexRoute: appLayoutAdminIndexRoute,
-  appLayoutAdminReplicationsReplicationIdExecutionsRoute:
-    appLayoutAdminReplicationsReplicationIdExecutionsRoute,
+const LayoutAdminRouteChildren: LayoutAdminRouteChildren = {
+  LayoutAdminRegistriesRoute: LayoutAdminRegistriesRoute,
+  LayoutAdminReplicationsRoute: LayoutAdminReplicationsRoute,
+  LayoutAdminUsersRoute: LayoutAdminUsersRoute,
+  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
+  LayoutAdminReplicationsReplicationIdExecutionsRoute:
+    LayoutAdminReplicationsReplicationIdExecutionsRoute,
 }
 
-const appLayoutAdminRouteWithChildren = appLayoutAdminRoute._addFileChildren(
-  appLayoutAdminRouteChildren,
+const LayoutAdminRouteWithChildren = LayoutAdminRoute._addFileChildren(
+  LayoutAdminRouteChildren,
 )
 
-interface appLayoutRouteChildren {
-  appLayoutAboutRoute: typeof appLayoutAboutRoute
-  appLayoutAdminRoute: typeof appLayoutAdminRouteWithChildren
-  appLayoutIndexRoute: typeof appLayoutIndexRoute
-  appLayoutDatasetsNewRoute: typeof appLayoutDatasetsNewRoute
-  appLayoutModelsNewRoute: typeof appLayoutModelsNewRoute
-  appLayoutDatasetsIndexRoute: typeof appLayoutDatasetsIndexRoute
-  appLayoutModelsIndexRoute: typeof appLayoutModelsIndexRoute
-  appLayoutProfileIndexRoute: typeof appLayoutProfileIndexRoute
-  appLayoutProjectsIndexRoute: typeof appLayoutProjectsIndexRoute
-  appLayoutProjectsProjectIdIndexRoute: typeof appLayoutProjectsProjectIdIndexRoute
-  appLayoutProjectsProjectIdDatasetsIndexRoute: typeof appLayoutProjectsProjectIdDatasetsIndexRoute
-  appLayoutProjectsProjectIdMembersIndexRoute: typeof appLayoutProjectsProjectIdMembersIndexRoute
-  appLayoutProjectsProjectIdModelsIndexRoute: typeof appLayoutProjectsProjectIdModelsIndexRoute
-  appLayoutProjectsProjectIdSettingsIndexRoute: typeof appLayoutProjectsProjectIdSettingsIndexRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute
-  appLayoutProjectsProjectIdModelsModelIdIndexRoute: typeof appLayoutProjectsProjectIdModelsModelIdIndexRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
-  appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute: typeof appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
-  appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute: typeof appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute
-  appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute: typeof appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute: typeof appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
-  appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute: typeof appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
-  appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute: typeof appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute
+interface LayoutRouteChildren {
+  LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
+  LayoutappIndexRoute: typeof LayoutappIndexRoute
+  LayoutappDatasetsNewRoute: typeof LayoutappDatasetsNewRoute
+  LayoutappModelsNewRoute: typeof LayoutappModelsNewRoute
+  LayoutappDatasetsIndexRoute: typeof LayoutappDatasetsIndexRoute
+  LayoutappModelsIndexRoute: typeof LayoutappModelsIndexRoute
+  LayoutappProfileIndexRoute: typeof LayoutappProfileIndexRoute
+  LayoutappProjectsIndexRoute: typeof LayoutappProjectsIndexRoute
+  LayoutappProjectsProjectIdIndexRoute: typeof LayoutappProjectsProjectIdIndexRoute
+  LayoutappProjectsProjectIdDatasetsIndexRoute: typeof LayoutappProjectsProjectIdDatasetsIndexRoute
+  LayoutappProjectsProjectIdMembersIndexRoute: typeof LayoutappProjectsProjectIdMembersIndexRoute
+  LayoutappProjectsProjectIdModelsIndexRoute: typeof LayoutappProjectsProjectIdModelsIndexRoute
+  LayoutappProjectsProjectIdSettingsIndexRoute: typeof LayoutappProjectsProjectIdSettingsIndexRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute
+  LayoutappProjectsProjectIdModelsModelIdIndexRoute: typeof LayoutappProjectsProjectIdModelsModelIdIndexRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute
+  LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute: typeof LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute
+  LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute: typeof LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute
+  LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute: typeof LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute: typeof LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute
+  LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute: typeof LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute
+  LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute: typeof LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute
 }
 
-const appLayoutRouteChildren: appLayoutRouteChildren = {
-  appLayoutAboutRoute: appLayoutAboutRoute,
-  appLayoutAdminRoute: appLayoutAdminRouteWithChildren,
-  appLayoutIndexRoute: appLayoutIndexRoute,
-  appLayoutDatasetsNewRoute: appLayoutDatasetsNewRoute,
-  appLayoutModelsNewRoute: appLayoutModelsNewRoute,
-  appLayoutDatasetsIndexRoute: appLayoutDatasetsIndexRoute,
-  appLayoutModelsIndexRoute: appLayoutModelsIndexRoute,
-  appLayoutProfileIndexRoute: appLayoutProfileIndexRoute,
-  appLayoutProjectsIndexRoute: appLayoutProjectsIndexRoute,
-  appLayoutProjectsProjectIdIndexRoute: appLayoutProjectsProjectIdIndexRoute,
-  appLayoutProjectsProjectIdDatasetsIndexRoute:
-    appLayoutProjectsProjectIdDatasetsIndexRoute,
-  appLayoutProjectsProjectIdMembersIndexRoute:
-    appLayoutProjectsProjectIdMembersIndexRoute,
-  appLayoutProjectsProjectIdModelsIndexRoute:
-    appLayoutProjectsProjectIdModelsIndexRoute,
-  appLayoutProjectsProjectIdSettingsIndexRoute:
-    appLayoutProjectsProjectIdSettingsIndexRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdIndexRoute,
-  appLayoutProjectsProjectIdModelsModelIdIndexRoute:
-    appLayoutProjectsProjectIdModelsModelIdIndexRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute,
-  appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute:
-    appLayoutProjectsProjectIdModelsModelIdSettingsIndexRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute,
-  appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute:
-    appLayoutProjectsProjectIdModelsModelIdBlobRefSplatRoute,
-  appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute:
-    appLayoutProjectsProjectIdModelsModelIdTreeRefSplatRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute,
-  appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute:
-    appLayoutProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute,
-  appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute:
-    appLayoutProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute,
-  appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute:
-    appLayoutProjectsProjectIdModelsModelIdCommitsRefIndexRoute,
+const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutAdminRoute: LayoutAdminRouteWithChildren,
+  LayoutappIndexRoute: LayoutappIndexRoute,
+  LayoutappDatasetsNewRoute: LayoutappDatasetsNewRoute,
+  LayoutappModelsNewRoute: LayoutappModelsNewRoute,
+  LayoutappDatasetsIndexRoute: LayoutappDatasetsIndexRoute,
+  LayoutappModelsIndexRoute: LayoutappModelsIndexRoute,
+  LayoutappProfileIndexRoute: LayoutappProfileIndexRoute,
+  LayoutappProjectsIndexRoute: LayoutappProjectsIndexRoute,
+  LayoutappProjectsProjectIdIndexRoute: LayoutappProjectsProjectIdIndexRoute,
+  LayoutappProjectsProjectIdDatasetsIndexRoute:
+    LayoutappProjectsProjectIdDatasetsIndexRoute,
+  LayoutappProjectsProjectIdMembersIndexRoute:
+    LayoutappProjectsProjectIdMembersIndexRoute,
+  LayoutappProjectsProjectIdModelsIndexRoute:
+    LayoutappProjectsProjectIdModelsIndexRoute,
+  LayoutappProjectsProjectIdSettingsIndexRoute:
+    LayoutappProjectsProjectIdSettingsIndexRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdIndexRoute,
+  LayoutappProjectsProjectIdModelsModelIdIndexRoute:
+    LayoutappProjectsProjectIdModelsModelIdIndexRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdSettingsIndexRoute,
+  LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute:
+    LayoutappProjectsProjectIdModelsModelIdSettingsIndexRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdBlobRefSplatRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdTreeRefSplatRoute,
+  LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute:
+    LayoutappProjectsProjectIdModelsModelIdBlobRefSplatRoute,
+  LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute:
+    LayoutappProjectsProjectIdModelsModelIdTreeRefSplatRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdCommitCommitIdIndexRoute,
+  LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute:
+    LayoutappProjectsProjectIdDatasetsDatasetIdCommitsRefIndexRoute,
+  LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute:
+    LayoutappProjectsProjectIdModelsModelIdCommitCommitIdIndexRoute,
+  LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute:
+    LayoutappProjectsProjectIdModelsModelIdCommitsRefIndexRoute,
 }
 
-const appLayoutRouteWithChildren = appLayoutRoute._addFileChildren(
-  appLayoutRouteChildren,
-)
+const LayoutRouteWithChildren =
+  LayoutRoute._addFileChildren(LayoutRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  LayoutRoute: LayoutRouteWithChildren,
   LoginRoute: LoginRoute,
-  appLayoutRoute: appLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
