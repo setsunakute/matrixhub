@@ -66,12 +66,12 @@ func modelToProto(m *model.Model) *modelv1alpha1.Model {
 	}
 
 	return &modelv1alpha1.Model{
-		Id:             int32(m.ID),
-		Name:           m.Name,
-		Nickname:       "", // Not implemented yet
-		DefaultBranch:  "main",
-		CreatedAt:      m.CreatedAt.Format(time.RFC3339),
-		UpdatedAt:      m.UpdatedAt.Format(time.RFC3339),
+		Id:            int32(m.ID),
+		Name:          m.Name,
+		Nickname:      "", // Not implemented yet
+		DefaultBranch: m.DefaultBranch,
+		CreatedAt:     m.CreatedAt.Format(time.RFC3339),
+		UpdatedAt:     m.UpdatedAt.Format(time.RFC3339),
 		CloneUrls: &modelv1alpha1.CloneUrls{
 			SshUrl:  "",
 			HttpUrl: "",
@@ -93,11 +93,47 @@ func (mh *ModelHandler) RegisterToServer(options *ServerOptions) {
 }
 
 func (mh *ModelHandler) ListModelTaskLabels(ctx context.Context, request *modelv1alpha1.ListModelTaskLabelsRequest) (*modelv1alpha1.ListModelTaskLabelsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "Not implemented")
+	labels, err := mh.ms.ListModelTaskLabels(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "failed to list task labels")
+	}
+
+	items := make([]*modelv1alpha1.Label, len(labels))
+	for i, l := range labels {
+		items[i] = &modelv1alpha1.Label{
+			Id:        int32(l.ID),
+			Name:      l.Name,
+			Category:  modelv1alpha1.Category_TASK,
+			CreatedAt: l.CreatedAt.Format(time.RFC3339),
+			UpdatedAt: l.UpdatedAt.Format(time.RFC3339),
+		}
+	}
+
+	return &modelv1alpha1.ListModelTaskLabelsResponse{
+		Item: items,
+	}, nil
 }
 
 func (mh *ModelHandler) ListModelFrameLabels(ctx context.Context, request *modelv1alpha1.ListModelFrameLabelsRequest) (*modelv1alpha1.ListModelFrameLabelsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "Not implemented")
+	labels, err := mh.ms.ListModelFrameLabels(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "failed to list library labels")
+	}
+
+	items := make([]*modelv1alpha1.Label, len(labels))
+	for i, l := range labels {
+		items[i] = &modelv1alpha1.Label{
+			Id:        int32(l.ID),
+			Name:      l.Name,
+			Category:  modelv1alpha1.Category_LIBRARY,
+			CreatedAt: l.CreatedAt.Format(time.RFC3339),
+			UpdatedAt: l.UpdatedAt.Format(time.RFC3339),
+		}
+	}
+
+	return &modelv1alpha1.ListModelFrameLabelsResponse{
+		Item: items,
+	}, nil
 }
 
 func (mh *ModelHandler) ListModels(ctx context.Context, request *modelv1alpha1.ListModelsRequest) (*modelv1alpha1.ListModelsResponse, error) {

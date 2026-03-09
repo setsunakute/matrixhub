@@ -121,8 +121,8 @@ func (server *APIServer) initHandlersServicesRepos() {
 	projectService := project.NewProjectService(repos.Project)
 	modelService := model.NewModelService(
 		repos.Model,
-		model.NewMockLabelRepo(),
-		model.NewMockGitRepo(),
+		repos.Label,
+		repos.Git,
 	)
 
 	// init handlers

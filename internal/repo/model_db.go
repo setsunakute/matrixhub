@@ -46,7 +46,7 @@ func (m *modelDB) List(ctx context.Context, filter *model.Filter) ([]*model.Mode
 	query := m.db.WithContext(ctx).
 		Table("models m").
 		Select(`m.id, m.name, m.project_id, m.size, m.parameter_count,
-				m.readme_content, m.is_featured,
+				m.readme_content, m.is_popular, m.default_branch,
 				m.created_at, m.updated_at,
 				p.name as project_name`).
 		Joins("INNER JOIN projects p ON m.project_id = p.id")
@@ -87,33 +87,50 @@ func (m *modelDB) List(ctx context.Context, filter *model.Filter) ([]*model.Mode
 	offset := (filter.Page - 1) * filter.PageSize
 	query = query.Order(orderBy).Limit(int(filter.PageSize)).Offset(int(offset))
 
-	// Execute query
+	// Execute query - get models first
 	var models []*model.Model
 	if err := query.Find(&models).Error; err != nil {
 		return nil, 0, fmt.Errorf("failed to list models: %w", err)
 	}
 
-	// Fetch labels for each model
-	for _, mdl := range models {
-		labels, err := m.getLabels(ctx, mdl.ID)
-		if err != nil {
-			return nil, 0, fmt.Errorf("failed to fetch labels for model %d: %w", mdl.ID, err)
-		}
-		mdl.Labels = labels
+	if len(models) == 0 {
+		return models, total, nil
+	}
+
+	// Collect all model IDs for batch label query
+	modelIDs := make([]int64, len(models))
+	for i, m := range models {
+		modelIDs[i] = m.ID
+	}
+
+	// Second query: fetch all labels in one batch
+	type labelResult struct {
+		ModelID int64 `db:"model_id"`
+		model.Label
+	}
+	var labelResults []labelResult
+	err := m.db.WithContext(ctx).
+		Table("models_labels ml").
+		Select("ml.model_id, l.*").
+		Joins("INNER JOIN labels l ON ml.label_id = l.id").
+		Where("ml.model_id IN ?", modelIDs).
+		Find(&labelResults).Error
+	if err != nil {
+		return nil, 0, fmt.Errorf("failed to fetch labels: %w", err)
+	}
+
+	// Build label map for efficient lookup
+	labelMap := make(map[int64][]model.Label)
+	for _, lr := range labelResults {
+		labelMap[lr.ModelID] = append(labelMap[lr.ModelID], lr.Label)
+	}
+
+	// Attach labels to models
+	for _, m := range models {
+		m.Labels = labelMap[m.ID]
 	}
 
 	return models, total, nil
-}
-
-// getLabels fetches labels for a specific model
-func (m *modelDB) getLabels(ctx context.Context, modelID int64) ([]model.Label, error) {
-	var labels []model.Label
-	err := m.db.WithContext(ctx).
-		Table("labels l").
-		Joins("INNER JOIN models_labels ml ON l.id = ml.label_id").
-		Where("ml.model_id = ?", modelID).
-		Find(&labels).Error
-	return labels, err
 }
 
 // Create creates a new model (placeholder - not implemented for this task)

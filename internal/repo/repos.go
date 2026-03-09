@@ -32,6 +32,8 @@ type Repos struct {
 	Project project.IProjectRepo
 	User    user.IUserRepo
 	Model   model.IModelRepo
+	Label   model.ILabelRepo
+	Git     model.IGitRepo
 }
 
 func NewRepos(conf *config.Config) *Repos {
@@ -48,6 +50,8 @@ func NewRepos(conf *config.Config) *Repos {
 	repos.Project = NewProjectDBRepo(repos.DB)
 	repos.User = NewUserRepo(repos.DB)
 	repos.Model = NewModelDB(repos.DB)
+	repos.Label = NewLabelDB(repos.DB)
+	repos.Git = NewGitDB() // TODO: inject GitRepo implementation
 
 	return repos
 }

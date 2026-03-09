@@ -26,15 +26,13 @@ type Model struct {
 	ProjectID      int       `json:"projectId" db:"project_id"`
 	ProjectName    string    `json:"projectName" db:"project_name"`
 	Size           int64     `json:"size" db:"size"`
+	DefaultBranch  string    `json:"defaultBranch" db:"default_branch"`
 	ParameterCount int64     `json:"parameterCount" db:"parameter_count"`
 	ReadmeContent  string    `json:"readmeContent" db:"readme_content"`
-	IsFeatured     bool      `json:"isFeatured" db:"is_featured"`
+	IsPopular      bool      `json:"isPopular" db:"is_popular"`
 	Labels         []Label   `json:"labels" db:"-" gorm:"-"`
 	CreatedAt      time.Time `json:"createdAt" db:"created_at"`
 	UpdatedAt      time.Time `json:"updatedAt" db:"updated_at"`
-}
-
-func (m *Model) GenLabel() {
 }
 
 // Label represents a category label for models/datasets.
