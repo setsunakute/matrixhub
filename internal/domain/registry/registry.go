@@ -39,8 +39,8 @@ func (Registry) TableName() string {
 
 type IRegistryRepo interface {
 	ListRegistries(ctx context.Context, page, pageSize int, search string) ([]*Registry, int64, error)
-	GetRegistry(ctx context.Context, id int32) (*Registry, error)
+	GetRegistry(ctx context.Context, id int) (*Registry, error)
 	CreateRegistry(ctx context.Context, registry Registry) (*Registry, error)
 	UpdateRegistry(ctx context.Context, registry Registry) error
-	DeleteRegistry(ctx context.Context, id int32) error
+	DeleteRegistry(ctx context.Context, id int) error
 }

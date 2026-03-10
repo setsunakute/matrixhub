@@ -78,7 +78,7 @@ type Member struct {
 
 // IProjectRepo defines the project repository interface
 type IProjectRepo interface {
-	CreateProject(ctx context.Context, project *Project) error
+	CreateProject(ctx context.Context, project *Project) (*Project, error)
 	GetProjectByName(ctx context.Context, name string) (*Project, error)
 	GetProject(ctx context.Context, param *Project) (*Project, error)
 	ListProjects(ctx context.Context, name string, projectType ProjectType, managedOnly bool, page, pageSize int) ([]*Project, int64, error)

@@ -127,6 +127,15 @@ type TreeEntry struct {
 	Commit  *Commit  `json:"commit,omitempty"`
 }
 
+type GitRepository struct {
+	RemoteRegistryURL  string
+	RemoteProjectName  string
+	RemoteResourceName string
+	ProjectName        string
+	ResourceName       string
+	ResourceType       string
+}
+
 // IGitRepo defines the repository interface for Git operations on models.
 type IGitRepo interface {
 	// CreateRepository initializes a Git repository.
@@ -149,6 +158,10 @@ type IGitRepo interface {
 
 	// GetBlob returns the content of a file at a specific revision.
 	GetBlob(ctx context.Context, project, name, revision, path string) (*TreeEntry, error)
+
+	Clone(ctx context.Context, gitRepository *GitRepository) error
+
+	Pull(ctx context.Context, gitRepository *GitRepository) error
 }
 
 // ILabelRepo defines the repository interface for label operations.

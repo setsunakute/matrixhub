@@ -80,7 +80,11 @@ func (r *ProjectDBRepo) GetProject(ctx context.Context, param *project.Project) 
 	return output, err
 }
 
-func (r *ProjectDBRepo) CreateProject(ctx context.Context, param *project.Project) error {
+func (r *ProjectDBRepo) CreateProject(ctx context.Context, param *project.Project) (*project.Project, error) {
 	dbWithCtx := r.db.WithContext(ctx)
-	return dbWithCtx.Create(param).Error
+	if err := dbWithCtx.Create(param).Error; err != nil {
+		return nil, err
+	}
+
+	return param, nil
 }

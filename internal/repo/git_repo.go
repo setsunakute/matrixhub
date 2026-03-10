@@ -67,3 +67,11 @@ func (g *gitRepo) GetTree(ctx context.Context, project, name, revision, path str
 func (g *gitRepo) GetBlob(ctx context.Context, project, name, revision, path string) (*model.TreeEntry, error) {
 	return &model.TreeEntry{}, nil
 }
+
+func (g *gitRepo) Clone(ctx context.Context, gitRepository *model.GitRepository) error {
+	panic("not implemented")
+}
+
+func (g *gitRepo) Pull(ctx context.Context, gitRepository *model.GitRepository) error {
+	panic("not implemented")
+}
