@@ -138,11 +138,45 @@ CREATE TABLE IF NOT EXISTS `datasets_labels`
 
 CREATE TABLE IF NOT EXISTS `access_tokens`
 (
-    `id`         int         NOT NULL AUTO_INCREMENT,
-    `name`       varchar(64) NOT NULL,
-    `secret`     VARCHAR(128),
-    `user_id`    CHAR(36)    NOT NULL,
-    `created_at` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `id`         int          NOT NULL AUTO_INCREMENT,
+    `name`       varchar(64)  NOT NULL,
+    `user_id`    CHAR(36)     NOT NULL,
+    `created_at` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `replication_rules`
+(
+    `id`          int          NOT NULL AUTO_INCREMENT,
+    `created_at`  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `replication_tasks`
+(
+    `id`                  int          NOT NULL AUTO_INCREMENT,
+    `replication_rule_id` int,
+    `created_at`          timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`          timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `sync_jobs`
+(
+    `id`                    int           NOT NULL AUTO_INCREMENT,
+    `remote_registry_id`    int           NOT NULL,
+    `remote_project_name`   varchar(255)  NOT NULL,
+    `remote_resource_name`  varchar(255)  NOT NULL,
+    `project_name`          varchar(255),
+    `resource_name`         varchar(255)  NOT NULL,
+    `resource_type`         varchar(64)   NOT NULL,
+    `sync_type`             varchar(64)   NOT NULL,
+    `replication_task_id`   int,
+    `complete_percents`     int,
+    `created_at`            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
