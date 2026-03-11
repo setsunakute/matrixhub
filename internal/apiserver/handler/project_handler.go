@@ -81,7 +81,7 @@ func (ph *ProjectHandler) CreateProject(ctx context.Context, request *projectv1a
 	param := &project.Project{
 		Name: request.Name,
 	}
-	err := ph.ProjectService.CreateProject(ctx, param)
+	_, err := ph.ProjectService.CreateProject(ctx, param)
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
