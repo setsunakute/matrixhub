@@ -81,7 +81,25 @@ func (h *DatasetHandler) RegisterToServer(options *ServerOptions) {
 }
 
 func (h *DatasetHandler) ListDatasetTaskLabels(ctx context.Context, request *datasetv1alpha1.ListDatasetTaskLabelsRequest) (*datasetv1alpha1.ListDatasetTaskLabelsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "Not implemented")
+	labels, err := h.ds.ListDatasetTaskLabels(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "failed to list task labels")
+	}
+
+	items := make([]*datasetv1alpha1.Label, len(labels))
+	for i, l := range labels {
+		items[i] = &datasetv1alpha1.Label{
+			Id:        int32(l.ID),
+			Name:      l.Name,
+			Category:  datasetv1alpha1.Category_TASK,
+			CreatedAt: l.CreatedAt.Format(time.RFC3339),
+			UpdatedAt: l.UpdatedAt.Format(time.RFC3339),
+		}
+	}
+
+	return &datasetv1alpha1.ListDatasetTaskLabelsResponse{
+		Items: items,
+	}, nil
 }
 
 func (h *DatasetHandler) ListDatasets(ctx context.Context, request *datasetv1alpha1.ListDatasetsRequest) (*datasetv1alpha1.ListDatasetsResponse, error) {

@@ -1,21 +1,21 @@
-# 本地开发指南
+# Local Development Guide
 
-本文档介绍如何在本地运行 MatrixHub 的前端和后端服务。
+This document describes how to run MatrixHub frontend and backend services locally.
 
-## 前置要求
+## Prerequisites
 
 - Go 1.23+
 - Node.js 18+
 - pnpm 8+
-- Docker & Docker Compose（推荐）
+- Docker
 
-## 快速开始
+## Quick Start
 
-### 本地开发
+### Local Development
 
-如果需要本地修改代码并调试，可以手动启动服务。
+If you need to modify code and debug locally, you can start services manually.
 
-#### 1. 启动 MySQL 数据库
+#### 1. Start MySQL Database
 
 ```bash
 docker run -d \
@@ -28,40 +28,40 @@ docker run -d \
   mysql:8.4
 ```
 
-#### 2. 配置环境变量
+#### 2. Configure Environment Variables
 
 ```bash
 export MATRIXHUB_DATABASE_DSN="matrixhub:changeme@tcp(127.0.0.1:3306)/matrixhub?charset=utf8mb4&multiStatements=true&parseTime=true"
 ```
 
-#### 3. 启动后端服务
+#### 3. Start Backend Service
 
 ```bash
-# 使用默认配置文件
+# Use default config file
 go run ./cmd/matrixhub apiserver
 
-# 或指定配置文件
+# Or specify config file
 go run ./cmd/matrixhub apiserver -c config/dev-config.yaml
 ```
 
-#### 4. 启动前端服务
+#### 4. Start Frontend Service
 
 ```bash
 cd ui
-pnpm install  # 首次运行需要安装依赖
+pnpm install  # Install dependencies on first run
 pnpm dev
 ```
 
-前端开发服务器将在 http://localhost:5173 启动，并自动代理 API 请求到后端。
+The frontend dev server will start at http://localhost:5173 and automatically proxy API requests to the backend.
 
-## 使用 Makefile
+## Using Makefile
 
-项目提供了便捷的 Makefile 命令：
+The project provides convenient Makefile commands:
 
-**⚠️ 重要**: 使用 `local-run` 和 `local-run-api` 命令前，**必须先启动 MySQL 数据库**。
+**⚠️ Important**: Before using `local-run` and `local-run-api` commands, **you must start MySQL database first**.
 
 ```bash
-# 1. 启动 MySQL 数据库（如果还没有启动）
+# 1. Start MySQL database (if not already running)
 docker run -d \
   --name matrixhub-mysql \
   -e MYSQL_ROOT_PASSWORD=password \
@@ -71,101 +71,102 @@ docker run -d \
   -p 3306:3306 \
   mysql:8.4
 
-# 2. 本地运行（前端 + 后端）
+# 2. Run locally (frontend + backend)
 make local-run
 
-# 或分别运行：
-make local-run-api   # 只运行后端 API 服务器
-make local-run-web   # 只运行前端
+# Or run separately:
+make local-run-api   # Run backend API server only
+make local-run-web   # Run frontend only
 ```
 
-**提示**:
-- `local-run-web` 不依赖 MySQL，可独立运行
-- `local-run-api` 和 `local-run` 需要 MySQL 运行
-- 如果没有配置环境变量，确保 `config/config.yaml` 中的数据库 DSN 正确
+**Tips**:
+- `local-run-web` does not depend on MySQL and can run independently
+- `local-run-api` and `local-run` require MySQL to be running
+- If environment variables are not configured, ensure the database DSN in `config/config.yaml` is correct
 
-## 配置说明
+## Configuration
 
-### 环境变量
+### Environment Variables
 
-`config.yaml` 支持通过环境变量配置数据库连接：
+`config.yaml` supports configuring database connection via environment variables:
 
 ```bash
 export MATRIXHUB_DATABASE_DSN="matrixhub:changeme@tcp(127.0.0.1:3306)/matrixhub?charset=utf8mb4&multiStatements=true&parseTime=true"
 ```
 
-### 前端代理配置
+### Frontend Proxy Configuration
 
-前端已配置 Vite 代理，开发环境下会自动将 `/api/*` 和 `/apis/*` 请求代理到后端服务器（http://127.0.0.1:3001），无需额外配置。
+The frontend is configured with Vite proxy, which automatically forwards `/api/*` and `/apis/*` requests to the backend server (http://127.0.0.1:3001) in development mode, no additional configuration needed.
 
-配置文件：`ui/vite.config.ts`
+Configuration file: `ui/vite.config.ts`
 
-## 访问应用
+## Accessing the Application
 
-- **前端 UI**: http://localhost:5173
-- **后端 API**: http://localhost:3001
-- **API 健康检查**: http://localhost:3001/health
+- **Frontend UI**: http://localhost:5173
+- **Backend API**: http://localhost:3001
+- **API Health Check**: http://localhost:3001/health
 
-## 开发提示
+## Development Tips
 
-### 数据库
+### Database
 
-1. **首次启动**: 设置 `database.migrate: true` 会自动创建数据库表
-2. **调试模式**: 设置 `debug: true` 可以看到详细的 SQL 日志
-3. **数据持久化**: Docker Compose 使用命名卷，数据在容器重启后保留
+1. **First Run**: Setting `database.migrate: true` will automatically create database tables
+2. **Debug Mode**: Setting `debug: true` shows detailed SQL logs
+3. **Data Persistence**: Docker Compose uses named volumes, data persists after container restart
 
-### 前端
+### Frontend
 
-1. **热重载**: 修改代码会自动刷新浏览器
-2. **API 代理**: 开发环境下无需处理 CORS
-3. **TypeScript**: 使用 `pnpm typecheck` 进行类型检查
+1. **Hot Reload**: Code changes automatically refresh the browser
+2. **API Proxy**: No need to handle CORS in development mode
+3. **TypeScript**: Use `pnpm typecheck` for type checking
 
-### 后端
+### Backend
 
-1. **代码修改**: 需要手动重启服务
-2. **依赖管理**: 使用 `go mod tidy` 整理依赖
-3. **配置验证**: 启动时会自动验证配置文件
+1. **Code Changes**: Requires manual service restart
+2. **Dependency Management**: Use `go mod tidy` to organize dependencies
+3. **Configuration Validation**: Config file is automatically validated on startup
 
-## 故障排查
+## Troubleshooting
 
-### MySQL 连接失败
+### MySQL Connection Failed
 
 ```bash
-# 检查 MySQL 容器状态
+# Check MySQL container status
 docker ps | grep matrixhub-mysql
 
-# 查看 MySQL 日志
+# View MySQL logs
 docker logs matrixhub-mysql
 
-# 重启 MySQL
+# Restart MySQL
 docker restart matrixhub-mysql
 ```
 
-### 端口冲突
+### Port Conflicts
 
-如果端口被占用，可以修改：
+If ports are occupied, you can modify:
 
-**后端端口**: 
+**Backend Port**:
 
-修改 `config.yaml` 中的 `apiServer.port`
+Modify `apiServer.port` in `config.yaml`
 
-**前端端口**:
+**Frontend Port**:
 ```bash
 cd ui
 pnpm dev --port 3000
 ```
 
-### 依赖问题
+### Dependency Issues
 
-**Go 依赖**:
+**Go Dependencies**:
 ```bash
 go mod tidy
 go mod download
 ```
 
-**前端依赖**:
+**Frontend Dependencies**:
 ```bash
 cd ui
 rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
+
