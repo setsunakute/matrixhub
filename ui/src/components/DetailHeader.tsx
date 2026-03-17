@@ -45,7 +45,7 @@ export function DetailHeader({
           <Text
             component={Link}
             to={`/projects/${projectId}`}
-            c="cyan.6"
+            c="cyan"
             fw={500}
             size="lg"
             td="none"

@@ -12,8 +12,7 @@ import { useTranslation } from 'react-i18next'
 
 import DownloadIcon from '@/assets/svgs/download.svg?react'
 import UploadIcon from '@/assets/svgs/upload-cloud.svg?react'
-
-import { DetailHeader } from '../-components/DetailHeader'
+import { DetailHeader } from '@/components/DetailHeader'
 
 // TODO: Replace with real API data
 const MOCK_DATA: Model = {
@@ -125,7 +124,7 @@ function ModelLayout() {
 
   return (
     <>
-      <Box>
+      <Box mt={20}>
         <DetailHeader
           projectId={projectId}
           name={modelId}
@@ -134,8 +133,8 @@ function ModelLayout() {
           labels={model.labels}
           actions={(
             <>
-              <Button size="xs" leftSection={<UploadIcon />}>{t('model.upload')}</Button>
-              <Button size="xs" leftSection={<DownloadIcon />}>{t('model.download')}</Button>
+              <Button size="xs" color="cyan" variant="light" leftSection={<UploadIcon fill="cyan" />}>{t('model.upload')}</Button>
+              <Button size="xs" color="cyan" variant="light" leftSection={<DownloadIcon fill="cyan" />}>{t('model.download')}</Button>
             </>
           )}
         />

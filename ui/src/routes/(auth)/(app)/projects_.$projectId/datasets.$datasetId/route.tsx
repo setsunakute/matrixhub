@@ -17,8 +17,7 @@ import { useTranslation } from 'react-i18next'
 
 import DownloadIcon from '@/assets/svgs/download.svg?react'
 import UploadIcon from '@/assets/svgs/upload-cloud.svg?react'
-
-import { DetailHeader } from '../-components/DetailHeader'
+import { DetailHeader } from '@/components/DetailHeader'
 
 // TODO: Replace with real API data
 const MOCK_DATA: Dataset = {
@@ -130,7 +129,7 @@ function DatasetLayout() {
 
   return (
     <>
-      <Box>
+      <Box mt={20}>
         <DetailHeader
           projectId={projectId}
           name={datasetId}
@@ -139,13 +138,13 @@ function DatasetLayout() {
           labels={dataset.labels}
           actions={(
             <>
-              <Button size="xs" leftSection={<UploadIcon />}>{t('dataset.uploadFiles')}</Button>
-              <Button size="xs" leftSection={<DownloadIcon />}>{t('dataset.downloadDataset')}</Button>
+              <Button size="xs" color="cyan" variant="light" leftSection={<UploadIcon fill="cyan" />}>{t('dataset.uploadFiles')}</Button>
+              <Button size="xs" color="cyan" variant="light" leftSection={<DownloadIcon fill="cyan" />}>{t('dataset.downloadDataset')}</Button>
             </>
           )}
         />
       </Box>
-      <Space h="1.5rem" />
+      <Space h={20} />
 
       <Tabs value={activeTab}>
         <Tabs.List style={{ gap: 'var(--mantine-spacing-md)' }}>
@@ -161,8 +160,8 @@ function DatasetLayout() {
                 fw={600}
                 fz="sm"
                 lh="xs"
-                px="12px"
-                py="8px"
+                px={12}
+                py={8}
                 c={id === activeTab ? 'var(--mantine-color-gray-7)' : 'var(--mantine-color-gray-6)'}
                 {...linkProps}
               >

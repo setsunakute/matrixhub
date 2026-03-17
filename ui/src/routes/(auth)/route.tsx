@@ -29,6 +29,8 @@ import { Route as ModelsRoute } from '@/routes/(auth)/(app)/models'
 import { Route as CreateModelRoute } from '@/routes/(auth)/(app)/models/new'
 import { Route as ProfileRoute } from '@/routes/(auth)/(app)/profile'
 import { Route as ProjectsRoute } from '@/routes/(auth)/(app)/projects'
+import { Route as ProjectDatasetRoute } from '@/routes/(auth)/(app)/projects_.$projectId/datasets.$datasetId/route'
+import { Route as ProjectModelRoute } from '@/routes/(auth)/(app)/projects_.$projectId/models.$modelId/route'
 import { Route as AdminRoute } from '@/routes/(auth)/admin'
 
 export const Route = createFileRoute('/(auth)')({
@@ -65,16 +67,19 @@ function AppNavbar() {
       label: t('nav.models'),
       icon: ModelIcon,
       to: ModelsRoute.to,
+      extraMatch: ProjectModelRoute.to,
     },
     {
       label: t('nav.datasets'),
       icon: DatasetIcon,
       to: DatasetsRoute.to,
+      extraMatch: ProjectDatasetRoute.to,
     },
     {
       label: t('nav.projectManagement'),
       icon: ProjectIcon,
       to: ProjectsRoute.to,
+      repelMatch: [ProjectModelRoute.to, ProjectDatasetRoute.to],
     },
   ])
   const matchRoute = useMatchRoute()
@@ -85,10 +90,22 @@ function AppNavbar() {
       wrap="nowrap"
     >
       {navRoutes.map((route) => {
-        const isActive = !!matchRoute({
+        let isActive = !!matchRoute({
           to: route.to,
           fuzzy: true,
         })
+
+        if (isActive && 'repelMatch' in route) {
+          isActive = !route.repelMatch.some(repelRoute => matchRoute({
+            to: repelRoute,
+            fuzzy: true,
+          }))
+        } else if (!isActive && 'extraMatch' in route) {
+          isActive = !!matchRoute({
+            to: route.extraMatch,
+            fuzzy: true,
+          })
+        }
 
         return (
           <NavLink
@@ -96,6 +113,7 @@ function AppNavbar() {
             label={route.label}
             component={Link}
             to={route.to}
+            activeOptions={{ exact: true }}
             leftSection={(
               <route.icon
                 fontSize={rem(20)}
