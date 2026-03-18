@@ -11,7 +11,13 @@ import tanstackRouter from '@tanstack/eslint-plugin-router'
 import jsonc from 'eslint-plugin-jsonc'
 
 export default defineConfig(
-  globalIgnores(['dist', 'node_modules', 'src/routeTree.gen.ts', '.vscode']),
+  globalIgnores([
+    'dist',
+    'node_modules',
+    'src/routeTree.gen.ts',
+    '.vscode',
+    '.agents',
+  ]),
 
   // =============================================
   // Base rules for all JS/TS files
