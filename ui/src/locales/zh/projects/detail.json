@@ -1,6 +1,6 @@
 {
   "modelsPage": {
-    "searchPlaceholder": "Model Name",
+    "searchPlaceholder": "模型名称",
     "sortFieldUpdatedAt": "更新时间",
     "sortFieldDownloads": "下载量",
     "create": "创建模型",

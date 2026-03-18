@@ -28,18 +28,21 @@ interface ResourceCardProps {
   title?: ReactNode
   badges?: ResourceCardBadge[]
   maxBadges?: number
-  metaItems: ResourceCardMetaItem[]
+  metaItems?: ResourceCardMetaItem[]
+  renderMeta?: () => ReactNode
   renderRoot?: (props: Record<string, unknown>) => ReactNode
 }
 
 const EMPTY_BADGES: ResourceCardBadge[] = []
+const EMPTY_META_ITEMS: ResourceCardMetaItem[] = []
 const DEFAULT_MAX_BADGES = 3
 
 export function ResourceCard({
   title,
   badges = EMPTY_BADGES,
   maxBadges = DEFAULT_MAX_BADGES,
-  metaItems,
+  metaItems = EMPTY_META_ITEMS,
+  renderMeta,
   renderRoot,
 }: ResourceCardProps) {
   const isInteractive = Boolean(renderRoot)
@@ -135,24 +138,28 @@ export function ResourceCard({
           </Group>
         )}
 
-        <Group gap={32} mt="auto" wrap="nowrap" w="100%">
-          {metaItems.map(item => (
-            <Group key={item.key} gap={8} wrap="nowrap" flex="1 0 0" miw={0} c="dimmed">
-              {item.icon && (
-                <span className={classes.iconSlot}>{item.icon}</span>
-              )}
-              <Text
-                size="14px"
-                lh="16px"
-                fw={600}
-                tt="uppercase"
-                truncate="end"
-              >
-                {item.value}
-              </Text>
+        {renderMeta
+          ? renderMeta()
+          : metaItems.length > 0 && (
+            <Group gap={32} mt="auto" wrap="nowrap" w="100%">
+              {metaItems.map(item => (
+                <Group key={item.key} gap={8} wrap="nowrap" flex="1 0 0" miw={0} c="dimmed">
+                  {item.icon && (
+                    <span className={classes.iconSlot}>{item.icon}</span>
+                  )}
+                  <Text
+                    size="14px"
+                    lh="16px"
+                    fw={600}
+                    tt="uppercase"
+                    truncate="end"
+                  >
+                    {item.value}
+                  </Text>
+                </Group>
+              ))}
             </Group>
-          ))}
-        </Group>
+          )}
       </Stack>
     </Card>
   )
