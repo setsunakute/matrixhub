@@ -4,8 +4,8 @@ a {
 
 .mantine-Tabs-tab {
   color: var(--mantine-color-gray-6);
+}
 
-  &[data-active] {
-    color: var(--mantine-color-gray-9);
-  }
+.mantine-Tabs-tab[data-active] {
+  color: var(--mantine-color-gray-9);
 }
