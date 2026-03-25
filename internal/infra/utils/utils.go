@@ -17,3 +17,12 @@ package utils
 func IsFullPageData(page, pageSize int) bool {
 	return page == 1 && pageSize == -1
 }
+
+// CalculatePages calculates the total number of pages based on total count and page size.
+// It returns 0 if pageSize is 0 or negative.
+func CalculatePages(total int64, pageSize int32) int32 {
+	if pageSize <= 0 {
+		return 0
+	}
+	return (int32(total) + pageSize - 1) / pageSize
+}

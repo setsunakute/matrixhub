@@ -27,6 +27,7 @@ import (
 	"github.com/matrixhub-ai/matrixhub/internal/domain/git"
 	"github.com/matrixhub-ai/matrixhub/internal/domain/model"
 	"github.com/matrixhub-ai/matrixhub/internal/infra/log"
+	"github.com/matrixhub-ai/matrixhub/internal/infra/utils"
 )
 
 type ModelHandler struct {
@@ -247,6 +248,7 @@ func (mh *ModelHandler) ListModels(ctx context.Context, request *modelv1alpha1.L
 			Total:    int32(total),
 			Page:     request.Page,
 			PageSize: request.PageSize,
+			Pages:    utils.CalculatePages(total, request.PageSize),
 		},
 	}, nil
 }
@@ -356,6 +358,7 @@ func (mh *ModelHandler) ListModelCommits(ctx context.Context, request *modelv1al
 			Total:    int32(total),
 			Page:     request.Page,
 			PageSize: request.PageSize,
+			Pages:    utils.CalculatePages(total, request.PageSize),
 		},
 	}, nil
 }

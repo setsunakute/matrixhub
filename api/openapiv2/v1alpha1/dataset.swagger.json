@@ -217,7 +217,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1alpha1GetDatasetBlobResponse"
+              "$ref": "#/definitions/v1alpha1File"
             }
           },
           "default": {
@@ -653,20 +653,6 @@
         "FILE"
       ],
       "default": "DIR"
-    },
-    "v1alpha1GetDatasetBlobResponse": {
-      "type": "object",
-      "properties": {
-        "lfs": {
-          "type": "boolean"
-        },
-        "content": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      }
     },
     "v1alpha1GetDatasetTreeResponse": {
       "type": "object",
