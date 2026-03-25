@@ -10,10 +10,7 @@ import {
   IconClock,
   IconCube,
 } from '@tabler/icons-react'
-import {
-  getRouteApi,
-  Link,
-} from '@tanstack/react-router'
+import { getRouteApi, Link } from '@tanstack/react-router'
 import { startTransition } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -141,16 +138,16 @@ export function ProjectModelsPage() {
             }}
           />
 
-          <Button
-            h={32}
-            px="md"
-            radius={6}
-            leftSection={<IconCube width={16} height={16} />}
-            component={Link}
-            to="/models/new"
-          >
-            {t('projects.detail.modelsPage.create')}
-          </Button>
+          <Link to="/models/new" search={{ projectId }}>
+            <Button
+              h={32}
+              px="md"
+              radius={6}
+              leftSection={<IconCube size={16} />}
+            >
+              {t('projects.detail.modelsPage.create')}
+            </Button>
+          </Link>
         </SearchToolbar>
 
         <Space h="lg"></Space>
