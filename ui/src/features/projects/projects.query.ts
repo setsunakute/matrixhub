@@ -1,7 +1,11 @@
 import { Projects } from '@matrixhub/api-ts/v1alpha1/project.pb'
-import { queryOptions } from '@tanstack/react-query'
+import {
+  keepPreviousData,
+  queryOptions,
+  useQuery,
+} from '@tanstack/react-query'
 
-export const DEFAULT_PROJECTS_PAGE_SIZE = 10
+import { DEFAULT_PROJECTS_PAGE_SIZE } from '@/utils/constants'
 
 export interface ProjectsSearch {
   query: string
@@ -18,9 +22,33 @@ export const projectKeys = {
   detail: (projectId: string) => ['projects', projectId] as const,
 }
 
+// -- Query options factory --
+
+export function projectsQueryOptions(search: ProjectsSearch) {
+  return queryOptions({
+    queryKey: projectKeys.list({
+      query: search.query,
+      page: search.page,
+    }),
+    queryFn: () => Projects.ListProjects({
+      name: search.query || undefined,
+      page: search.page,
+      pageSize: DEFAULT_PROJECTS_PAGE_SIZE,
+    }),
+  })
+}
+
 export function projectDetailQueryOptions(projectId: string) {
   return queryOptions({
     queryKey: projectKeys.detail(projectId),
     queryFn: () => Projects.GetProject({ name: projectId }),
+  })
+}
+
+// -- Custom hook --
+export function useProjects(search: ProjectsSearch) {
+  return useQuery({
+    ...projectsQueryOptions(search),
+    placeholderData: keepPreviousData,
   })
 }

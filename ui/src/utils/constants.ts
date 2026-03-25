@@ -1,0 +1,1 @@
+export const DEFAULT_PROJECTS_PAGE_SIZE = 10

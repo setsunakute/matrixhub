@@ -121,7 +121,7 @@ export function ProjectMembersPage() {
   return (
     <Box py="lg">
       <MembersTable
-        records={members}
+        data={members}
         pagination={pagination}
         page={search.page}
         loading={isLoading}

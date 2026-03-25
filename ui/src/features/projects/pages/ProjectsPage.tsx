@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Button,
   Group,
   Paper,
@@ -9,24 +8,17 @@ import {
 import { useDisclosure } from '@mantine/hooks'
 import {
   IconApiApp as ProjectIcon,
-  IconRefresh,
   IconHomePlus,
 } from '@tabler/icons-react'
-import {
-  getRouteApi,
-  useRouter,
-} from '@tanstack/react-router'
-import {
-  useCallback,
-  useMemo,
-  useState,
-} from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { getRouteApi } from '@tanstack/react-router'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { CreateProjectModal } from '../components/CreateProjectModal'
 import { DeleteProjectModal } from '../components/DeleteProjectModal'
 import { ProjectsTable } from '../components/ProjectsTable'
-import { useProjects } from '../projects.query'
+import { projectKeys, useProjects } from '../projects.query'
 
 import type { Project } from '@matrixhub/api-ts/v1alpha1/project.pb'
 
@@ -34,25 +26,25 @@ const projectsRouteApi = getRouteApi('/(auth)/(app)/projects/')
 
 export function ProjectsPage() {
   const { t } = useTranslation()
-  const router = useRouter()
+  const queryClient = useQueryClient()
   const navigate = projectsRouteApi.useNavigate()
   const search = projectsRouteApi.useSearch()
 
   const {
-    data, isLoading,
+    data, isLoading, isFetching,
   } = useProjects({
     query: search.query ?? '',
     page: search.page ?? 1,
   })
 
-  const projects = useMemo(() => data?.projects ?? [], [data?.projects])
+  const projects = data?.projects ?? []
   const pagination = data?.pagination
 
   const [createOpened, createHandlers] = useDisclosure(false)
   const [deleteOpened, deleteHandlers] = useDisclosure(false)
   const [deleteTarget, setDeleteTarget] = useState<Project | null>(null)
 
-  const handleSearchChange = useCallback((value: string) => {
+  const handleSearchChange = (value: string) => {
     if (value === (search.query ?? '')) {
       return
     }
@@ -65,25 +57,25 @@ export function ProjectsPage() {
         query: value,
       }),
     })
-  }, [navigate, search.query])
+  }
 
-  const handleDelete = useCallback((project: Project) => {
+  const handleDelete = (project: Project) => {
     setDeleteTarget(project)
     deleteHandlers.open()
-  }, [deleteHandlers])
+  }
 
-  const handleRefresh = useCallback(() => {
-    void router.invalidate()
-  }, [router])
+  const handleRefresh = () => {
+    void queryClient.invalidateQueries({ queryKey: projectKeys.all })
+  }
 
-  const handlePageChange = useCallback((page: number) => {
+  const handlePageChange = (page: number) => {
     void navigate({
       search: prev => ({
         ...prev,
         page,
       }),
     })
-  }, [navigate])
+  }
 
   return (
     <Stack gap="lg" pt="lg">
@@ -94,7 +86,7 @@ export function ProjectsPage() {
 
       <Paper>
         <ProjectsTable
-          records={projects}
+          data={projects}
           pagination={pagination}
           loading={isLoading}
           page={search.page ?? 1}
@@ -102,24 +94,15 @@ export function ProjectsPage() {
           onSearchChange={handleSearchChange}
           onDelete={handleDelete}
           onPageChange={handlePageChange}
+          onRefresh={handleRefresh}
+          fetching={isFetching}
           toolbarExtra={(
-            <>
-              <ActionIcon
-                variant="subtle"
-                color="gray"
-                size="lg"
-                onClick={handleRefresh}
-                loading={isLoading}
-              >
-                <IconRefresh size={20} />
-              </ActionIcon>
-              <Button
-                onClick={createHandlers.open}
-                leftSection={<IconHomePlus size={16} />}
-              >
-                {t('projects.create')}
-              </Button>
-            </>
+            <Button
+              onClick={createHandlers.open}
+              leftSection={<IconHomePlus size={16} />}
+            >
+              {t('projects.create')}
+            </Button>
           )}
         />
       </Paper>

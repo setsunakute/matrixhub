@@ -18,12 +18,10 @@ export function createProjectMutationOptions() {
         type: input.isPublic
           ? ProjectType.PROJECT_TYPE_PUBLIC
           : ProjectType.PROJECT_TYPE_PRIVATE,
-        registryId: input.enabledProxy && input.registryId != null
-          ? { value: input.registryId }
-          : undefined,
-        organization: input.enabledProxy
-          ? input.organization
-          : undefined,
+        ...(input.enabledProxy && {
+          registryId: input.registryId,
+          organization: input.organization,
+        }),
       }),
     meta: {
       errorMessage: i18n.t('projects.createModal.createFailed'),

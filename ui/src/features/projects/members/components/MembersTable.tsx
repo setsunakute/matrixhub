@@ -5,16 +5,15 @@ import {
 } from '@mantine/core'
 import { MemberType } from '@matrixhub/api-ts/v1alpha1/project.pb'
 import { ProjectRoleType } from '@matrixhub/api-ts/v1alpha1/role.pb'
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DataTable, type TableProps } from '@/shared/components/DataTable'
+import { DataTable, type DataTableProps } from '@/shared/components/DataTable'
 
 import type { ProjectMember } from '@matrixhub/api-ts/v1alpha1/project.pb'
 import type { MRT_ColumnDef } from 'mantine-react-table'
 import type { ReactNode } from 'react'
 
-export interface MembersTableProps extends Omit<TableProps<ProjectMember>, 'onDelete'> {
+export interface MembersTableProps extends Omit<DataTableProps<ProjectMember>, 'columns'> {
   onEditRole: (member: ProjectMember) => void
   onRemove: (member: ProjectMember) => void
   toolbarExtra?: ReactNode
@@ -114,7 +113,7 @@ function ActionsCell({
 }
 
 export function MembersTable({
-  records,
+  data,
   pagination,
   page,
   loading,
@@ -129,12 +128,13 @@ export function MembersTable({
   onPageChange,
   selectedCount,
   toolbarExtra,
+  ...rest
 }: MembersTableProps) {
   const {
     t,
   } = useTranslation()
 
-  const columns = useMemo<MRT_ColumnDef<ProjectMember>[]>(() => [
+  const columns: MRT_ColumnDef<ProjectMember>[] = [
     {
       accessorKey: 'memberName',
       header: t('projects.detail.membersPage.table.name'),
@@ -155,11 +155,12 @@ export function MembersTable({
       header: t('projects.detail.membersPage.table.actions'),
       Cell: ActionsCell,
     },
-  ], [t])
+  ]
 
   return (
     <DataTable
-      data={records}
+      {...rest}
+      data={data}
       columns={columns}
       pagination={pagination}
       page={page}

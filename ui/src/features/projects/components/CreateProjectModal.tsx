@@ -1,10 +1,9 @@
 import {
   Checkbox,
   Group,
+  Input,
   Select,
-  Stack,
   Switch,
-  Text,
   TextInput,
   Tooltip,
 } from '@mantine/core'
@@ -12,13 +11,12 @@ import { Registries } from '@matrixhub/api-ts/v1alpha1/registry.pb'
 import { IconInfoCircle } from '@tabler/icons-react'
 import { useForm } from '@tanstack/react-form'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import {
-  useEffect, useEffectEvent, useMemo,
-} from 'react'
+import { useEffect, useEffectEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useCurrentUser } from '@/features/auth/auth.query'
 import { ModalWrapper } from '@/shared/components/ModalWrapper'
+import { fieldError } from '@/shared/utils/form'
 
 import { createProjectMutationOptions } from '../projects.mutation'
 import {
@@ -28,19 +26,6 @@ import {
 export interface CreateProjectModalProps {
   opened: boolean
   onClose: () => void
-}
-
-function getFieldError(errors: unknown[]): string | undefined {
-  const first = errors[0]
-
-  if (typeof first === 'string') {
-    return first
-  }
-  if (first && typeof first === 'object' && 'message' in first) {
-    return String((first as { message: unknown }).message)
-  }
-
-  return first ? String(first) : undefined
 }
 
 export function CreateProjectModal({
@@ -84,12 +69,10 @@ export function CreateProjectModal({
     enabled: opened,
   })
 
-  const registryOptions = useMemo(() => {
-    return (registriesQuery.data?.registries ?? []).map(r => ({
-      value: String(r.id),
-      label: r.url ?? r.name ?? '',
-    }))
-  }, [registriesQuery.data])
+  const registryOptions = (registriesQuery.data?.registries ?? []).map(r => ({
+    value: String(r.id),
+    label: r.url ?? r.name ?? '',
+  }))
 
   const handleSubmit = () => {
     void form.handleSubmit()
@@ -117,49 +100,49 @@ export function CreateProjectModal({
             value={field.state.value}
             onChange={e => field.handleChange(e.currentTarget.value)}
             onBlur={field.handleBlur}
-            error={getFieldError(field.state.meta.errors)}
+            error={fieldError(field)}
           />
         )}
       </form.Field>
 
-      <Stack gap="xs">
-        <Text fw={600} size="sm">
-          {t('projects.createModal.typeLabel')}
-        </Text>
+      <Input.Wrapper label={t('projects.createModal.typeLabel')}>
         <form.Field name="isPublic">
           {field => (
             <Checkbox
+              mt={4}
               label={t('projects.createModal.public')}
               checked={field.state.value}
               onChange={e => field.handleChange(e.currentTarget.checked)}
             />
           )}
         </form.Field>
-      </Stack>
+      </Input.Wrapper>
 
       {
         currentUser?.isAdmin && (
-          <Stack gap="xs">
-            <Group gap={4}>
-              <Text fw={600} size="sm">
+          <Input.Wrapper
+            label={(
+              <Group gap={4}>
                 {t('projects.createModal.proxyLabel')}
-              </Text>
-              <Tooltip
-                label={t('projects.createModal.proxyHint')}
-                multiline
-                w={320}
-                withArrow
-              >
-                <IconInfoCircle
-                  size={16}
-                  color="var(--mantine-color-dimmed)"
-                  style={{ cursor: 'help' }}
-                />
-              </Tooltip>
-            </Group>
+                <Tooltip
+                  label={t('projects.createModal.proxyHint')}
+                  multiline
+                  w={320}
+                  withArrow
+                >
+                  <IconInfoCircle
+                    size={16}
+                    color="var(--mantine-color-dimmed)"
+                    style={{ cursor: 'help' }}
+                  />
+                </Tooltip>
+              </Group>
+            )}
+          >
             <form.Field name="enabledProxy">
               {field => (
                 <Switch
+                  mt={4}
                   label={field.state.value
                     ? t('projects.createModal.proxyEnabled')
                     : t('projects.createModal.proxyDisabled')}
@@ -176,13 +159,12 @@ export function CreateProjectModal({
             </form.Field>
             <form.Subscribe selector={s => s.values.enabledProxy}>
               {enabledProxy => enabledProxy && (
-                <Group gap="xs" grow align="flex-start">
+                <Group gap="xs" grow align="flex-start" mt="xs">
                   <form.Field
                     name="registryId"
                     validators={{
                       onChange: registryIdSchema,
                     }}
-
                   >
                     {field => (
                       <Select
@@ -190,7 +172,7 @@ export function CreateProjectModal({
                         value={field.state.value != null ? String(field.state.value) : null}
                         onChange={val => field.handleChange(Number(val))}
                         onBlur={field.handleBlur}
-                        error={getFieldError(field.state.meta.errors)}
+                        error={fieldError(field)}
                       />
                     )}
                   </form.Field>
@@ -206,14 +188,14 @@ export function CreateProjectModal({
                         placeholder={t('projects.createModal.organizationPlaceholder')}
                         value={field.state.value ?? ''}
                         onChange={e => field.handleChange(e.currentTarget.value)}
-                        error={getFieldError(field.state.meta.errors)}
+                        error={fieldError(field)}
                       />
                     )}
                   </form.Field>
                 </Group>
               )}
             </form.Subscribe>
-          </Stack>
+          </Input.Wrapper>
         )
       }
 

@@ -5,16 +5,13 @@ import {
 } from '@mantine/core'
 import { ProjectType } from '@matrixhub/api-ts/v1alpha1/project.pb'
 import { Link } from '@tanstack/react-router'
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DataTable } from '@/shared/components/DataTable'
+import { DataTable, type DataTableProps } from '@/shared/components/DataTable'
 import { formatDateTime } from '@/shared/utils/date'
 
 import type { Project } from '@matrixhub/api-ts/v1alpha1/project.pb'
-import type { Pagination } from '@matrixhub/api-ts/v1alpha1/utils.pb'
 import type { MRT_ColumnDef } from 'mantine-react-table'
-import type { ReactNode } from 'react'
 
 function isPublicProject(type?: ProjectType) {
   return type === ProjectType.PROJECT_TYPE_PUBLIC
@@ -68,7 +65,7 @@ function ProjectProxyCell({ row }: ProjectCellProps) {
 
   return (
     <Badge
-      color={enabled ? 'green' : 'red'}
+      color={enabled ? 'green' : 'gray'}
       variant="light"
     >
       {enabled
@@ -98,20 +95,12 @@ function ProjectActionsCell({
   )
 }
 
-export interface ProjectsTableProps {
-  records: Project[]
-  pagination?: Pagination
-  page: number
-  loading?: boolean
-  searchValue?: string
-  onSearchChange?: (value: string) => void
-  onDelete: (item: Project) => void
-  onPageChange: (page: number) => void
-  toolbarExtra?: ReactNode
+export type ProjectsTableProps = Omit<DataTableProps<Project>, 'onBatchDelete' | 'columns'> & {
+  onDelete?: (project: Project) => void
 }
 
 export function ProjectsTable({
-  records,
+  data,
   pagination,
   page,
   loading,
@@ -120,10 +109,12 @@ export function ProjectsTable({
   onDelete,
   onPageChange,
   toolbarExtra,
+  onRefresh,
+  ...rest
 }: ProjectsTableProps) {
   const { t } = useTranslation()
 
-  const columns = useMemo<MRT_ColumnDef<Project>[]>(() => [
+  const columns: MRT_ColumnDef<Project>[] = [
     {
       accessorKey: 'name',
       header: t('projects.table.name'),
@@ -160,11 +151,12 @@ export function ProjectsTable({
       header: t('projects.table.actions'),
       Cell: ProjectActionsCell,
     },
-  ], [t])
+  ]
 
   return (
-    <DataTable
-      data={records}
+    <DataTable<Project>
+      {...rest}
+      data={data}
       columns={columns}
       pagination={pagination}
       page={page}
@@ -175,6 +167,7 @@ export function ProjectsTable({
       onSearchChange={onSearchChange}
       toolbarExtra={toolbarExtra}
       onPageChange={onPageChange}
+      onRefresh={onRefresh}
       getRowId={row => String(row.name)}
       tableOptions={{
         meta: { onDelete },

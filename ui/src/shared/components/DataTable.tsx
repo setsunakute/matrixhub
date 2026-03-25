@@ -7,8 +7,9 @@ import {
   Stack,
   type TableProps as MantineTableProps,
   Text,
-  Tooltip,
+  noop,
 } from '@mantine/core'
+import { useDebouncedCallback, useDebouncedValue } from '@mantine/hooks'
 import { IconRefresh, IconTrash } from '@tabler/icons-react'
 import { MantineReactTable } from 'mantine-react-table'
 import { useTranslation } from 'react-i18next'
@@ -66,28 +67,8 @@ export interface DataTableToolbarProps {
  * Provides the standard set of pagination, search, selection, and action props
  * so each resource table doesn't have to re-declare them.
  */
-export interface TableProps<T> {
-  records: T[]
-  pagination?: PaginationData
-  page: number
-  loading?: boolean
-  searchValue?: string
-  onSearchChange?: (value: string) => void
-  searchToolbarProps?: Omit<
-    SearchToolbarProps,
-    'searchPlaceholder' | 'searchValue' | 'onSearchChange' | 'children'
-  >
-  onRefresh?: () => void
-  onDelete: (item: T) => void
-  onBatchDelete?: () => void
-  rowSelection?: MRT_RowSelectionState
-  onRowSelectionChange?: Dispatch<SetStateAction<MRT_RowSelectionState>>
-  onPageChange: (page: number) => void
-  selectedCount?: number
-  toolbarExtra?: ReactNode
-}
 
-interface DataTableProps<TData extends MRT_RowData> extends DataTableToolbarProps {
+export interface DataTableProps<TData extends MRT_RowData> extends DataTableToolbarProps {
   /** Row data array */
   data: TData[]
   /** Column definitions */
@@ -116,6 +97,7 @@ interface DataTableProps<TData extends MRT_RowData> extends DataTableToolbarProp
 
   // --- Loading ---
   loading?: boolean
+  fetching?: boolean
 
   // --- Empty rows fallback ---
   renderEmptyRowsFallback?: MRT_TableOptions<TData>['renderEmptyRowsFallback']
@@ -203,6 +185,7 @@ export function DataTable<TData extends MRT_RowData>({
   toolbarExtra,
   // Loading
   loading = false,
+  fetching = false,
   renderEmptyRowsFallback = emptyRowsFallback,
   // Display column overrides
   displayColumnDefOptions,
@@ -219,14 +202,19 @@ export function DataTable<TData extends MRT_RowData>({
     ...restTableOptions
   } = tableOptions ?? {}
 
+  const [debouncedLoading] = useDebouncedValue(loading, 300)
+
   const tableState = {
-    isLoading: loading,
-    showSkeletons: loading,
+    isLoading: debouncedLoading,
+    showSkeletons: debouncedLoading,
     ...extraState,
     ...(rowSelection !== undefined ? { rowSelection } : {}),
   }
 
   // Toolbar
+  const [debouncedFetching] = useDebouncedValue(fetching, 300)
+  const showRefresh = !!onRefresh
+  const debouncedRefresh = useDebouncedCallback(onRefresh ?? noop, 300)
   const showBatchDelete = (selectedCount ?? 0) > 0 && !!onBatchDelete
   const showSearch = !!searchPlaceholder
   const searchPlaceholderText = typeof searchPlaceholder === 'string'
@@ -249,18 +237,16 @@ export function DataTable<TData extends MRT_RowData>({
           }}
 
         >
-          {onRefresh && (
-            <Tooltip label={t('shared.refresh')}>
-              <ActionIcon
-                variant="white"
-                size="lg"
-                onClick={onRefresh}
-                loading={loading}
-                c="gray.6"
-              >
-                <IconRefresh size={24} />
-              </ActionIcon>
-            </Tooltip>
+          {showRefresh && (
+            <ActionIcon
+              variant="transparent"
+              size="lg"
+              onClick={debouncedRefresh}
+              loading={debouncedFetching}
+              c="gray.6"
+            >
+              <IconRefresh size={24} />
+            </ActionIcon>
           )}
           <Button
             color="red"
