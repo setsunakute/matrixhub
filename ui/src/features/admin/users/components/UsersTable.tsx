@@ -8,7 +8,7 @@ import { UserSource } from '@matrixhub/api-ts/v1alpha1/user.pb'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DataTable, type TableProps } from '@/shared/components/DataTable'
+import { DataTable, type DataTableProps } from '@/shared/components/DataTable'
 import { formatDateTime } from '@/shared/utils/date'
 
 import { getUserRowId } from '../users.utils'
@@ -22,7 +22,9 @@ interface UsersTableMeta {
   onDelete?: (user: User) => void
 }
 
-type UsersTableProps = TableProps<User>
+type UsersTableProps = Omit<DataTableProps<User>, 'columns'> & {
+  onDelete: (user: User) => void
+}
 
 function UserAdminCell({ row }: UserCellProps) {
   const { t } = useTranslation()
@@ -101,7 +103,7 @@ function UserActionsCell({
 }
 
 export function UsersTable({
-  records,
+  data,
   pagination,
   page,
   loading,
@@ -115,6 +117,7 @@ export function UsersTable({
   onPageChange,
   selectedCount,
   toolbarExtra,
+  ...rest
 }: UsersTableProps) {
   const { t } = useTranslation()
 
@@ -153,7 +156,8 @@ export function UsersTable({
 
   return (
     <DataTable
-      data={records}
+      {...rest}
+      data={data}
       columns={columns}
       pagination={pagination}
       page={page}

@@ -79,7 +79,7 @@ export function UsersPage() {
 
   return (
     <UsersTable
-      records={users}
+      data={users}
       pagination={pagination}
       loading={loading}
       page={search.page ?? DEFAULT_USERS_PAGE}

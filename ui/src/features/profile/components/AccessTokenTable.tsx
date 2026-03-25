@@ -144,7 +144,7 @@ export function AccessTokenTable({ tokens }: AccessTokenTableProps) {
     {
       id: 'actions',
       enableSorting: false,
-      header: t('routes.projects.table.actions'),
+      header: '',
       Cell: ActionCell,
     },
   ]
